@@ -319,7 +319,8 @@ body {
 .section-gradient {
 	background: var(--gradient);
 	padding: var(--smt) 0;
-
+}
+/*--- 
 	h1,
 	.text-h1,
 	h2,
@@ -352,9 +353,9 @@ body {
 		background: var(--color-primary-500-hover);
 	}
 }
-
+!TYPOGRAPHY ---*/
 .section-dark {
-	background: var(--color-secondary);
+	background: var(--color-primary-800);
 	padding: var(--smt) 0;
 
 	h1,
@@ -820,7 +821,7 @@ h6,
 .woocommerce-breadcrumb,
 #breadcrumbs {
 	text-align: left;
-	color: var(--color-primary-500);
+	color: var(--color-secondary-200);
 	font-size: 14px;
 	display: flex;
 	row-gap: 8px;

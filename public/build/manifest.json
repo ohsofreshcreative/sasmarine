@@ -29,7 +29,7 @@
     "src": "editor.deps.json"
   },
   "resources/css/app.css": {
-    "file": "assets/app-tV3UVm4k.css",
+    "file": "assets/app-DzQNSo_w.css",
     "name": "app",
     "names": [
       "app.css"
@@ -41,11 +41,11 @@
       "assets/phone-CsaqUbl9.svg",
       "assets/mail-BsdHUSBF.svg",
       "assets/bottom-arrow-BE5KB43S.svg",
-      "assets/pointer-5_58814e.svg"
+      "assets/pointer-DCg2HeqG.svg"
     ]
   },
   "resources/css/editor.css": {
-    "file": "assets/editor-VEN6OLxR.css",
+    "file": "assets/editor-DLvbKULP.css",
     "name": "editor",
     "names": [
       "editor.css"
@@ -70,11 +70,11 @@
     "src": "resources/images/phone.svg"
   },
   "resources/images/pointer.svg": {
-    "file": "assets/pointer-5_58814e.svg",
+    "file": "assets/pointer-DCg2HeqG.svg",
     "src": "resources/images/pointer.svg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-Dk9gKWEe.js",
+    "file": "assets/app-NE9ZOAol.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -84,6 +84,7 @@
       "resources/js/blocks/slider.js",
       "resources/js/blocks/solutions.js",
       "resources/js/blocks/logos.js",
+      "resources/js/blocks/partnership.js",
       "resources/js/blocks/values.js",
       "resources/js/blocks/catalogues.js"
     ]
@@ -99,6 +100,16 @@
     "name": "logos",
     "src": "resources/js/blocks/logos.js",
     "isDynamicEntry": true
+  },
+  "resources/js/blocks/partnership.js": {
+    "file": "assets/partnership-CPMCfGmg.js",
+    "name": "partnership",
+    "src": "resources/js/blocks/partnership.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_swiper-Ibu1cDE8.js",
+      "_pagination-0izXEFxY.js"
+    ]
   },
   "resources/js/blocks/reviews.js": {
     "file": "assets/reviews-BLdlqu0u.js",

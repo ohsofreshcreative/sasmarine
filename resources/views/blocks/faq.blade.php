@@ -9,10 +9,16 @@
 	$background => filled($background) && $background !== 'none',
 	])>
 
-	<div class="__wrapper c-main grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-20">
+	<div class="__wrapper c-main">
 
-		<div class="__content">
-			<h3 data-gsap-element="header" class="">{{ $g_faq['header'] }}</h3>
+		<div class="__content text-center">
+					@if (!empty($g_faq['title']))
+			<div data-gsap-element="title" class="">
+				{{ $g_faq['title'] }}
+			</div>
+			@endif
+			<h3 data-gsap-element="header" class="m-title">{{ $g_faq['header'] }}</h3>
+			
 			@if (!empty($g_faq['image']))
 			<div data-gsap-element="img" class="__img order1 mt-10">
 				<img class="__img object-cover" src="{{ $g_faq['image']['url'] }}" alt="{{ $g_faq['image']['alt'] ?? '' }}">
@@ -25,9 +31,10 @@
 				<input class="tab-check" type="checkbox" name="radio-a" id="check{{ $loop->index }}">
 				<label class="tabs-label flex items-center justify-between" for="check{{ $loop->index }}">
 					<div class="flex items-center gap-4">
+					  <img class="h-8 w-auto" src="/wp-content/uploads/2026/07/m-logo.svg" />
 						<p class="!text-lg font-header">{{ $item['title'] }}</p>
 					</div>
-					<x-icon.arrow-up class="__arrow text-secondary w-3 h-4" />
+	<span class="__icon"></span>
 				</label>
 				<div class="tabs-content">
 					{!! $item['txt'] !!}

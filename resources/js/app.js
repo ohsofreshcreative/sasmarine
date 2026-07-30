@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	if (document.querySelector('.b-slider')) import('./blocks/slider');
 	if (document.querySelector('.b-solutions')) import('./blocks/solutions');
 	if (document.querySelector('.b-logos')) import('./blocks/logos');
+		if (document.querySelector('.b-partnership')) import('./blocks/partnership');
 	if (document.querySelector('.b-values')) import('./blocks/values');
 	if (document.querySelector('.b-catalogues')) import('./blocks/catalogues');
 });

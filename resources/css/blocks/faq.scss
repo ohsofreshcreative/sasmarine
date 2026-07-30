@@ -22,12 +22,29 @@
 		margin-bottom: 0px !important;
 		cursor: pointer;
 		color: var(--body);
-
-		.__arrow {
-			transition: transform 0.3s ease-in-out;
-		}
+	
 	}
+.__icon {
+	width: 24px;
+	height: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
 
+	&::before {
+		content: "+";
+		font-size: 28px;
+		font-weight: 300;
+		line-height: 1;
+		color: var(--secondary);
+		transition: content 0.3s ease;
+	}
+}
+
+input:checked + .tabs-label .__icon::before {
+	content: "−";
+}
 	.tabs-label:hover {}
 
 	.tabs-content {

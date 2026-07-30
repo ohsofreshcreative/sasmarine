@@ -3,34 +3,38 @@
 <section
 	data-gsap-anim="section"
 	@if(!empty($section_id)) id="{{ $section_id }}" @endif
-	@class([ 'b-content relative -smt overflow-hidden' ,
+	@class([ 'b-content relative -spt overflow-hidden' ,
 	$sectionClass=> filled($sectionClass),
 	$section_class => filled($section_class),
 	$background => filled($background) && $background !== 'none',
 	])>
 
-	@if ($bgshape)
-		<img class="__bg-shape absolute inset-y-0 right-0 w-auto pointer-events-none" src="{{ get_template_directory_uri() }}/resources/images/bg-shape.svg" alt="">
-	@endif
+<!-- <div
+	class="absolute inset-0 z-1 pointer-events-none"
+	style="background: linear-gradient(270deg, #A9D8F5 0%, #C7E8FC 100%);">
+</div> -->
 
-	<div class="__wrapper c-main relative">
+	<div class="__wrapper c-main relative z-10">
 
 		<div class="__col grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-20">
 			@if (!empty($g_content['image']))
 			<figure data-gsap-element="img" class="__img h-full order1">
 				<picture>
-					<img class="radius-img h-[504px] max-h-[504px] w-full object-cover" src="{{ $g_content['image']['url'] }}" alt="{{ $g_content['image']['alt'] ?? '' }}">
+					<img class=" h-[504px] max-h-[504px] w-full object-cover" src="{{ $g_content['image']['url'] }}" alt="{{ $g_content['image']['alt'] ?? '' }}">
 				</picture>
 			</figure>
 			@endif
 
 			<div class="__content order2">
+			@if (!empty($g_content['title']))
+			<div data-gsap-element="title" class="c-title ">
+				{{ $g_content['title'] }}
+			</div>
+			@endif
 				<h2 data-gsap-element="header" class="text-h4 m-header text-primary">{{ $g_content['header'] }}</h2>
-
 				<div data-gsap-element="txt" class="__txt">
 					{!! $g_content['text'] !!}
 				</div>
-
 				@if (!empty($g_content['button1']) || !empty($g_content['button2']))
 				<div class="inline-buttons m-btn">
 					@if (!empty($g_content['button1']))

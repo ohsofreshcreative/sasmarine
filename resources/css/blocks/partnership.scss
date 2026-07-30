@@ -1,0 +1,24 @@
+.partnership-standard {
+    overflow: visible;
+}
+
+.partnership-standard .swiper-slide {
+    height: auto;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease;
+    width: auto; 
+}
+.b-partnership .__prev,
+.b-partnership .__next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+?

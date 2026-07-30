@@ -6,88 +6,86 @@ use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 use App\Support\SectionClasses;
 
-class Faq extends Block
+class Partnership extends Block
 {
-	public $name = 'Najczęściej zadawane pytania';
-	public $description = 'Faq';
-	public $slug = 'faq';
+	public $name = 'Partnership - Slider';
+	public $description = 'partnership';
+	public $slug = 'partnership';
 	public $category = 'formatting';
-	public $icon = 'feedback';
-	public $keywords = ['faq'];
+	public $icon = 'image-flip-horizontal';
+	public $keywords = ['partnership', 'kafelki'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
 		'mode' => true,
 		'jsx' => true,
-		'anchor' => true,
-		'customClassName' => true,
 	];
 
 	public function fields()
 	{
-		$faq = new FieldsBuilder('faq');
+		$partnership = new FieldsBuilder('partnership');
 
-		$faq
-			->setLocation('block', '==', 'acf/faq') // ważne!
+		$partnership
+			->setLocation('block', '==', 'acf/partnership') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Najczęściej zadawane pytania',
+				'label' => 'Partnership - Slider',
 				'open' => false,
 				'multi_expand' => true,
 			])
-			/*--- TAB #1 ---*/
-			->addTab('Elementy', ['placement' => 'top'])
-			->addGroup('g_faq', ['label' => ''])
-			->addImage('image', [
-				'label' => 'Obraz',
-				'return_format' => 'array',
-				'preview_size' => 'thumbnail',
-			])
-						->addText('title', ['label' => 'Tytuł'])
-
-			->addText('header', ['label' => 'Nagłówek'])
-			->addWysiwyg('text', [
-				'label' => 'Treść',
-				'tabs' => 'all', // 'visual', 'text', 'all'
-				'toolbar' => 'full', // 'basic', 'full'
-				'media_upload' => true,
-			])
-			->addLink('button', [
-				'label' => 'Przycisk',
-				'return_format' => 'array',
-			])
-			->endGroup()
-
-			/*--- TAB #2 ---*/
-			->addTab('FAQ', ['placement' => 'top'])
-			->addRepeater('r_faq', [
-				'label' => 'FAQ',
-				'layout' => 'table', // 'row', 'block', albo 'table'
-				'min' => 1,
-				'max' => 20,
-				'button_label' => 'Dodaj pytanie'
-			])
-			->addText('title', [
-				'label' => 'Pytanie',
-			])
-			->addWysiwyg('txt', [
+			/*--- FIELDS ---*/
+			->addTab('Treści', ['placement' => 'top'])
+			->addGroup('g_partnership', ['label' => ''])
+			->addText('title', ['label' => 'Tytuł'])
+						->addWysiwyg('text', [
 				'label' => 'Treść',
 				'tabs' => 'all',
 				'toolbar' => 'full',
 				'media_upload' => true,
 			])
+
+			->addRepeater('r_partnership', [
+				'label' => 'partnership',
+				'layout' => 'table', // 'row', 'block', albo 'table'
+				'min' => 1,
+				'max' => 10,
+				'button_label' => 'Dodaj kafelek'
+			])
+			->addText('number', ['label' => 'Numer'])
+			->addImage('image', [
+				'label' => 'Zdjęcie - tło',
+				'return_format' => 'array', // lub 'url', lub 'id'
+				'preview_size' => 'thumbnail',
+			])
+			->addText('header', [
+				'label' => 'Nagłówek',
+			])
+			->addTextarea('opis', [
+				'label' => 'Opis',
+				'rows' => 4,
+				'new_lines' => 'br',
+			])
 			->endRepeater()
 
+			->endGroup()
+
 			/*--- USTAWIENIA BLOKU ---*/
+
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
 			->addText('section_id', [
 				'label' => 'ID',
 			])
 			->addText('section_class', [
 				'label' => 'Dodatkowe klasy CSS',
+			])
+			->addTrueFalse('nolist', [
+				'label' => 'Brak punktatorów',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
 			])
 			->addTrueFalse('flip', [
 				'label' => 'Odwrotna kolejność',
@@ -125,27 +123,25 @@ class Faq extends Block
 					'section-dark' => 'Ciemne',
 				],
 				'default_value' => 'none',
-				'ui' => 0,
+				'ui' => 0, // Ulepszony interfejs
 				'allow_null' => 0,
 			]);
 
-		return $faq;
+		return $partnership;
 	}
 
-	public function with(): array
+	public function with()
 	{
 		$fields = [
-			'g_faq' => get_field('g_faq'),
-			'r_faq' => get_field('r_faq'),
-
+			'g_partnership' => get_field('g_partnership'),
+			'partnership' => get_field('g_partnership')['r_partnership'] ?? [],
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
-
+			'nolist' => (bool) get_field('nolist'),
 			'flip' => (bool) get_field('flip'),
 			'wide' => (bool) get_field('wide'),
 			'nomt' => (bool) get_field('nomt'),
 			'gap' => (bool) get_field('gap'),
-
 			'background' => get_field('background') ?: 'none',
 		];
 
@@ -154,6 +150,7 @@ class Faq extends Block
 			'wide' => 'wide',
 			'nomt' => '!mt-0',
 			'gap' => 'wider-gap',
+			'nolist' => 'no-list',
 		]);
 
 		return $fields;

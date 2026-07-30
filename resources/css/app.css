@@ -8,7 +8,7 @@
 /* Twoje “źródłowe” zmienne RGB */
 :root {
   /* base */
-  --body: 42 63 80; /* #2A3F50 */
+  --body: #021622 
 
 /* PRIMARY (granat) */
 --primary: 6 65 102;      /* #064166 */
@@ -135,7 +135,7 @@
   --color-secondary-lighter: var(--color-secondary-100);
 
   --color-muted: var(--color-secondary-500);
-  --gradient: linear-gradient(90deg, #2265CB 0%, #181D84 100%);
+--gradient: linear-gradient(270deg, #A9D8F5 0%, #C7E8FC 100%);
   --gradient-light: linear-gradient(-90deg, #0E3A2D 0%, #0A533D 100%);
   --gradient-s: linear-gradient(-90deg, #DE855D 0%, #D37A51 100%);
 
@@ -163,6 +163,7 @@
 
 /*-- USED ---*/
 @import '../css/blocks/works.scss';
+@import '../css/blocks/partnership.scss';
 
 @import '../css/blocks/hero.scss';
 @import '../css/blocks/about.scss';
