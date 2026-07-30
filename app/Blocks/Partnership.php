@@ -40,13 +40,7 @@ class Partnership extends Block
 			->addTab('Treści', ['placement' => 'top'])
 			->addGroup('g_partnership', ['label' => ''])
 			->addText('title', ['label' => 'Tytuł'])
-						->addWysiwyg('text', [
-				'label' => 'Treść',
-				'tabs' => 'all',
-				'toolbar' => 'full',
-				'media_upload' => true,
-			])
-
+			->addText('header', ['label' => 'Nagłówek'])
 			->addRepeater('r_partnership', [
 				'label' => 'partnership',
 				'layout' => 'table', // 'row', 'block', albo 'table'

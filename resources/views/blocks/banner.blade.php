@@ -12,7 +12,7 @@
 <figure
     class="absolute right-0 top-1/2 -translate-y-1/2
            z-10 pointer-events-none
-           w-[52%] max-w-[900px]
+           w-[56%] max-w-[900px]
            h-[60vh] max-h-[520px]
            flex items-center justify-end">
     <img
@@ -22,13 +22,13 @@
 </figure>
 @endif
 
-	<div class=" __wrapper c-main relative z-10 pt-48 ">
+	<div class=" __wrapper c-main relative z-10 pt-40 ">
 			<div data-gsap-element="bread" class="__breadcrumb mb-14 ">
 		@if (function_exists('yoast_breadcrumb'))
 		{!! yoast_breadcrumb('<p id="breadcrumbs">','</p>') !!}
 		@endif
 	</div>
-		<div class="__content relative flex flex-col justify-center w-full md:w-1/2 z-20 pb-62">
+		<div class="__content relative flex flex-col justify-center w-full md:w-1/2 z-20 pb-46">
 			<h1 data-gsap-element="header" class="text-h2 text-white">
 				{{ $g_banner['title'] }}
 			</h1>
