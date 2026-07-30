@@ -44,11 +44,8 @@ class Hero extends Block
 				'return_format' => 'array',
 				'preview_size' => 'thumbnail',
 			])
-			->addFile('video', [
-				'label' => 'Wideo (w tle)',
-				'return_format' => 'url',
-			])
 			->addText('title', ['label' => 'Tytuł'])
+			->addText('header', ['label' => 'Nagłówek'])
 			->addWysiwyg('text', [
 				'label' => 'Treść',
 				'tabs' => 'all', // 'visual', 'text', 'all'

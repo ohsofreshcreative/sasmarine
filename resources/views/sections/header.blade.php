@@ -3,13 +3,13 @@ use App\Walkers\DropdownWalker;
 use App\Walkers\MobileDropdownWalker;
 @endphp
 
-<header x-data="{ mobileOpen: false }" class="relative top-0 z-50 bg-white masthead fixed-top mx-0 lg:mx-6 rounded-b-2xl lg:rounded-b-[48px]">
+<header x-data="{ mobileOpen: false }" class="relative top-0 z-50 bg-white masthead fixed-top">
 
 	<!-- Desktop Header -->
 	<div class="items-center justify-between hidden h-full py-4 px-12 mx-auto lg:flex">
 		<a class="brand shrink-0" href="{{ home_url('/') }}">
 			@if ($logo)
-			<img src="{{ $logo['url'] }}" alt="{{ $logo['alt'] ?? 'Logo' }}" class="w-auto h-12">
+			<img src="{{ $logo['url'] }}" alt="{{ $logo['alt'] ?? 'Logo' }}" class="w-auto h-18">
 			@else
 			<span class="text-xl font-bold">{{ $siteName }}</span>
 			@endif
@@ -28,7 +28,7 @@ use App\Walkers\MobileDropdownWalker;
 
 
 		<div class="">
-			<a href="/kontakt/" class="block w-full btn btn-secondary">
+			<a href="/kontakt/" class="block w-full btn btn-primary">
 				Kontakt
 			</a>
 		</div>
