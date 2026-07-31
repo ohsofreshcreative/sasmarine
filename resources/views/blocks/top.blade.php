@@ -8,19 +8,6 @@
 	$section_class => filled($section_class),
 	$background => filled($background) && $background !== 'none',
 	])>
-@if (!empty($g_top['image']))
-<figure
-    class="absolute right-0 top-1/2 -translate-y-1/2
-           z-10 pointer-events-none
-           w-[56%] max-w-[900px]
-           h-[60vh] max-h-[520px]
-           flex items-center justify-end">
-    <img
-        src="{{ $g_top['image']['url'] }}"
-        alt="{{ $g_top['image']['alt'] }}"
-        class="w-full h-full object-contain object-right">
-</figure>
-@endif
 
 	<div class=" __wrapper c-main relative z-10 pt-40 ">
 			<div data-gsap-element="bread" class="__breadcrumb mb-14 ">
@@ -42,5 +29,5 @@
 		</div>
 	</div>
 
-<img class="absolute -mt-45 right-0 h-90 z-10 object-contain" src="/wp-content/uploads/2026/07/shipp.png" />
-</section>
+<img class="absolute -mt-45 right-0 h-80 lg:h-120 z-10 object-contain" src="/wp-content/uploads/2026/07/shipp.png" />
+</section> 
