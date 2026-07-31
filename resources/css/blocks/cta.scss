@@ -1,2 +1,37 @@
-.s-cta-bg {
+.b-cta 	{
+	padding: var(--smt) 0;
+
+	._phone,
+	._mail,
+	._address {
+		display: flex;
+		align-items: center;
+
+		&::before {
+			content: '';
+			display: inline-block;
+			width: 40px;
+			height: 40px;
+			flex-shrink: 0;
+			background-color: var(--color-secondary);
+			border-radius: 50%;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: 20px;
+			margin-right: 16px;
+		}
+	}
+
+	._phone::before {
+		background-image: url('/wp-content/uploads/2026/07/phone-contact.svg');
+	}
+
+	._mail::before {
+		background-image: url('/wp-content/uploads/2026/07/mail-contact.svg');
+	}
+
+	._address::before {
+		background-image: url('/wp-content/uploads/2026/07/address.svg');
+		background-size: 18px;
+	}
 }

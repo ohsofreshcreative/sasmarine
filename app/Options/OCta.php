@@ -20,11 +20,6 @@ class Octa extends Options
 
 		$octa
 			->addGroup('g_octa', ['label' => ''])
-			->addImage('image', [
-				'label'         => 'Obraz tła',
-				'return_format' => 'array',
-				'preview_size'  => 'medium',
-			])
 			->addText('header', ['label' => 'Nagłówek'])
 			->addWysiwyg('txt', [
 				'label'        => 'Treść',
@@ -32,14 +27,9 @@ class Octa extends Options
 				'toolbar'      => 'basic',
 				'media_upload' => false,
 			])
-			->addLink('button1', [
-				'label'         => 'Przycisk #1 (jasny)',
-				'return_format' => 'array',
-			])
-			->addLink('button2', [
-				'label'         => 'Przycisk #2 (biały)',
-				'return_format' => 'array',
-			])
+			->addText('phone', ['label' => 'Telefon'])
+			->addText('mail', ['label' => 'Email'])
+			->addText('address', ['label' => 'Adres'])
 			->addText('title', ['label' => 'Tytuł'])
 			->addText('shortcode', [
 				'label' => 'Kod formularza',
