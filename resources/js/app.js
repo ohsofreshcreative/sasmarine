@@ -275,13 +275,5 @@ function initializeAmeliaBlock($block) {
 	fetchData();
 }
 
-// Uruchom logikę dla każdego bloku Amelia na stronie edycji
-acf.addAction('ready_field/name=amelia_service', function ($field) {
-	const $block = $field.closest('.acf-block-fields');
-	if ($block.data('amelia-initialized')) return;
-	$block.data('amelia-initialized', true);
-	initializeAmeliaBlock($block);
-});
-
 
 

@@ -6,14 +6,14 @@ use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 use App\Support\SectionClasses;
 
-class Offers extends Block
+class Showcase extends Block
 {
-	public $name = 'Oferta';
-	public $description = 'offers';
-	public $slug = 'offers';
+	public $name = 'Tekst oraz zdjęcie';
+	public $description = 'showcase';
+	public $slug = 'showcase';
 	public $category = 'formatting';
-	public $icon = 'screenoptions';
-	public $keywords = ['tresc', 'zdjecie', 'oferta'];
+	public $icon = 'align-pull-left';
+	public $keywords = ['tresc', 'zdjecie'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
@@ -25,23 +25,45 @@ class Offers extends Block
 
 	public function fields()
 	{
-		$offers = new FieldsBuilder('offers');
+		$showcase = new FieldsBuilder('showcase');
 
-		$offers
-			->setLocation('block', '==', 'acf/offers') // ważne!
+		$showcase
+			->setLocation('block', '==', 'acf/showcase') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Oferta',
+				'label' => 'Tekst oraz zdjęcie',
 				'open' => false,
 				'multi_expand' => true,
 			])
 			/*--- GROUP ---*/
 			->addTab('Elementy', ['placement' => 'top'])
-			->addGroup('g_offers', ['label' => ''])
-			->addMessage('Informacja', 'Ten blok automatycznie wyświetla podstrony oferty przypisane do bieżącej strony nadrzędnej. Aby zarządzać elementami, przejdź do sekcji „Oferta" w panelu administratora i dodaj lub edytuj podstrony podrzędne.')
+			->addGroup('g_showcase', ['label' => ''])
+			->addImage('image', [
+				'label' => 'Obraz',
+				'return_format' => 'array',
+				'preview_size' => 'thumbnail',
+			])
+			->addText('title', ['label' => 'Tytuł'])
+			->addText('header', ['label' => 'Nagłówek'])
+			->addWysiwyg('text', [
+				'label' => 'Treść',
+				'tabs' => 'all',
+				'toolbar' => 'full',
+				'media_upload' => true,
+			])
+			->addLink('button1', [
+				'label' => 'Przycisk #1',
+				'return_format' => 'array',
+			])
+			->addPostObject('button1_target', [
+				'label' => 'Przycisk do konretnej realizacji (post)',
+				'post_type' => ['work'],
+				'return_format' => 'id',
+			])
+
 			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/
@@ -97,6 +119,7 @@ class Offers extends Block
 					'section-light' => 'Jasne',
 					'section-brand' => 'Marki',
 					'section-gradient' => 'Gradient',
+					'section-gradient-light'  => 'Jasny Gradient',
 					'section-dark' => 'Ciemne',
 				],
 				'default_value' => 'none',
@@ -104,60 +127,33 @@ class Offers extends Block
 				'allow_null' => 0,
 			]);
 
-		return $offers;
+		return $showcase;
 	}
 
 	public function with(): array
 	{
-		$offers_query = new \WP_Query([
-			'post_type'      => 'offer',
-			'post_parent'    => 0,
-			'posts_per_page' => -1,
-			'orderby'        => 'menu_order',
-			'order'          => 'ASC',
-			'post_status'    => 'publish',
-		]);
-
-		$offer_items = [];
-		foreach ($offers_query->posts as $post) {
-			$thumb_id   = get_post_thumbnail_id($post->ID);
-			$icon       = get_field('offer_icon', $post->ID);
-			$offer_items[] = [
-				'id'        => $post->ID,
-				'title'     => $post->post_title,
-				'excerpt'   => get_the_excerpt($post),
-				'url'       => get_permalink($post->ID),
-				'image_url' => $thumb_id ? wp_get_attachment_image_url($thumb_id, 'large') : null,
-				'image_alt' => $thumb_id ? get_post_meta($thumb_id, '_wp_attachment_image_alt', true) : '',
-				'icon_url'  => $icon['url'] ?? null,
-				'icon_alt'  => $icon['alt'] ?? '',
-			];
-		}
-		wp_reset_postdata();
-
 		$fields = [
-			'g_offers'    => get_field('g_offers'),
-			'offer_items' => $offer_items,
 			'block_title' => get_field('block-title'),
+			'g_showcase' => get_field('g_showcase'),
 
-			'section_id'   => get_field('section_id'),
+			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
 
 			'bgshape' => (bool) get_field('bgshape'),
-			'flip'    => (bool) get_field('flip'),
-			'wide'    => (bool) get_field('wide'),
-			'nomt'    => (bool) get_field('nomt'),
-			'gap'     => (bool) get_field('gap'),
-			'nolist'  => (bool) get_field('nolist'),
+			'flip' => (bool) get_field('flip'),
+			'wide' => (bool) get_field('wide'),
+			'nomt' => (bool) get_field('nomt'),
+			'gap' => (bool) get_field('gap'),
+			'nolist' => (bool) get_field('nolist'),
 
 			'background' => get_field('background') ?: 'none',
 		];
 
 		$fields['sectionClass'] = SectionClasses::fromMap($fields, [
-			'flip'   => 'order-flip',
-			'wide'   => 'wide',
-			'nomt'   => '!mt-0',
-			'gap'    => 'wider-gap',
+			'flip' => 'order-flip',
+			'wide' => 'wide',
+			'nomt' => '!mt-0',
+			'gap' => 'wider-gap',
 			'nolist' => 'no-list',
 		]);
 

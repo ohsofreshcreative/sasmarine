@@ -40,11 +40,11 @@ class Slider extends Block
 			->addText('title', ['label' => 'Tytuł'])
 			->addText('header', ['label' => 'Nagolówek'])
 			->addRelationship('slider_offers', [
-				'label'         => 'Wpisy oferty (kolejność ma znaczenie)',
-				'post_type'     => ['offer'],
+				'label'         => 'Wpisy realizacji (kolejność ma znaczenie)',
+				'post_type'     => ['work'],
 				'filters'       => ['search'],
 				'return_format' => 'object',
-				'instructions'  => 'Wybierz i ułóż wpisy oferty w dowolnej kolejności. Jeśli pole jest puste, wyświetlą się wszystkie automatycznie.',
+				'instructions'  => 'Wybierz i ułóż realizacje w dowolnej kolejności. Jeśli pole jest puste, wyświetlą się wszystkie automatycznie.',
 			])
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
@@ -71,6 +71,7 @@ class Slider extends Block
 					'section-gray'      => 'Szare',
 					'section-brand'     => 'Marki',
 					'section-gradient'  => 'Gradient',
+					'section-gradient-light'  => 'Jasny Gradient',
 					'section-dark'      => 'Ciemne',
 				],
 				'default_value' => 'none',
@@ -87,7 +88,7 @@ class Slider extends Block
 
 		if (empty($selected)) {
 			$offers_query = new \WP_Query([
-				'post_type'      => 'offer',
+				'post_type'      => 'work',
 				'post_parent'    => 0,
 				'posts_per_page' => -1,
 				'orderby'        => 'menu_order',

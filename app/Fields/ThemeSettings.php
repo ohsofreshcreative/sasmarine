@@ -25,6 +25,16 @@ class ThemeSettings extends Field
 				'preview_size' => 'medium',
 				'library' => 'all',
 			])
+			->addImage('linkedin_icon', [
+				'label' => 'Ikona LinkedIn',
+				'return_format' => 'array',
+				'preview_size' => 'medium',
+				'library' => 'all',
+			])
+
+			->addUrl('linkedin_link', [
+				'label' => 'Link LinkedIn',
+			])
 			->addGroup('g_contact_info', [
 				'label' => 'Dane kontaktowe i logo',
 				'layout' => 'block',

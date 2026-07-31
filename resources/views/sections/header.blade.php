@@ -1,6 +1,10 @@
 @php
 use App\Walkers\DropdownWalker;
 use App\Walkers\MobileDropdownWalker;
+
+$linkedin_icon = get_field('linkedin_icon', 'option');
+$linkedin_icon_url = is_array($linkedin_icon) ? ($linkedin_icon['url'] ?? '') : $linkedin_icon;
+$linkedin_link = get_field('linkedin_link', 'option');
 @endphp
 
 <header x-data="{ mobileOpen: false }" class="relative top-0 z-50 bg-white masthead fixed-top">
@@ -27,11 +31,17 @@ use App\Walkers\MobileDropdownWalker;
 		@endif
 
 
-		<div class="">
-			<a href="/kontakt/" class="block w-full btn btn-primary">
-				Kontakt
-			</a>
-		</div>
+<div class="flex items-center gap-4">
+	@if($linkedin_link && $linkedin_icon_url)
+		<a href="{{ $linkedin_link }}" target="_blank" rel="noopener noreferrer" class="block shrink-0">
+			<img src="{{ $linkedin_icon_url }}" alt="LinkedIn" class="w-6 h-6">
+		</a>
+	@endif
+
+	<a href="/kontakt/" class="btn btn-primary w-auto">
+		Kontakt
+	</a>
+</div>
 	</div>
 
 	<!-- Mobile Header Bar -->

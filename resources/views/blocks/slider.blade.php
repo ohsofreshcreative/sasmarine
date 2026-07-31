@@ -8,7 +8,6 @@
 	$section_class => filled($section_class),
 	$background => filled($background) && $background !== 'none',
 	])>
-	<div class="absolute inset-0 z-1 pointer-events-none" style="background: linear-gradient(270deg, #C7E8FC 0%, #F4F9FF 100%)"></div>
 	<img class="absolute -left-70 top-0 z-1 opacity-40" src="/wp-content/uploads/2026/07/marine2.svg" />
 	<div class="c-main section-py">
 		<div class="__wrapper relative z-20 flex items-center justify-between">
@@ -46,19 +45,20 @@
 							<a href="{{ $slide['url'] }}" class="btn-primary btn">Zobacz realizację</a>
 						</div>
 						@if (!empty($slide['image_url']))
-						<figure class="relative m-0 md:max-h-[550px] max-h-[340px] overflow-hidden">
-							<img
-								src="{{ $slide['image_url'] }}"
-								alt="{{ $slide['image_alt'] }}"
-								class="w-full h-full min-h-52 object-cover ">
+					<figure class="relative m-0 h-full overflow-hidden">
+						<img
+							src="{{ $slide['image_url'] }}"
+							alt="{{ $slide['image_alt'] }}"
+							class="w-full h-full object-cover">
 						</figure>
 						@endif
 					</div>
 				</div>
 				@endforeach
 			</div>
-			<div class=" mx-auto">
+			<div class="mx-auto mt-8">
 				<div class="__pagination mx-auto"></div>
 			</div>
 		</div>
+	</div>
 </section>

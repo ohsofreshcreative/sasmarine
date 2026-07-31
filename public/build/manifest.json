@@ -29,7 +29,7 @@
     "src": "editor.deps.json"
   },
   "resources/css/app.css": {
-    "file": "assets/app-BZmdftl5.css",
+    "file": "assets/app-nKapchHx.css",
     "name": "app",
     "names": [
       "app.css"
@@ -45,7 +45,7 @@
     ]
   },
   "resources/css/editor.css": {
-    "file": "assets/editor-CH3jp9-L.css",
+    "file": "assets/editor-BVM8OVS1.css",
     "name": "editor",
     "names": [
       "editor.css"
@@ -74,7 +74,7 @@
     "src": "resources/images/pointer.svg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-CsiO0dEW.js",
+    "file": "assets/app-Bidc0Oeh.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -122,7 +122,7 @@
     ]
   },
   "resources/js/blocks/slider.js": {
-    "file": "assets/slider-ClUqQJGV.js",
+    "file": "assets/slider-XjxReVaG.js",
     "name": "slider",
     "src": "resources/js/blocks/slider.js",
     "isDynamicEntry": true,

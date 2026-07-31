@@ -483,6 +483,10 @@ add_filter('paginate_links_output', function ($output) {
 	return $output;
 });
 
+add_filter('wpseo_breadcrumb_separator', function () {
+	return '<img class="breadcrumb-separator" src="' . esc_url(home_url('/wp-content/uploads/2026/07/sep.svg')) . '" alt="" />';
+});
+
 /*--- PDF THUMBNAIL ---*/
 
 /**

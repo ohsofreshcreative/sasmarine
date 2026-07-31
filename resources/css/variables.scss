@@ -573,7 +573,7 @@ h6,
 	background: var(--gradient) !important;
 }
 
-.bg-gradient-light {
+.section-gradient-light {
 	background: var(--gradient-light) !important;
 }
 
@@ -618,7 +618,7 @@ h6,
 	font-weight: 400;
 	color: #fff;
 	background: transparent;
-	border: 1px solid transparent;
+	border: 2px solid transparent;
 	border-radius: var(--btns-radius);
 	display: inline-block;
 	padding: var(--btns-padding);
@@ -639,7 +639,7 @@ h6,
 .btn-primary:hover {
 	background-color: var(--color-primary-500-hover);
 	border-color: var(--color-primary-500-hover);
-	color: #fff;
+	color:  var(--color-primary-500);
 }
 
 .btn-secondary {
@@ -651,7 +651,7 @@ h6,
 .btn-secondary:hover {
 	background-color: var(--color-secondary-hover);
 	border-color: var(--color-secondary-hover);
-	color: #fff;
+	color: #fff!important;
 }
 
 .btn-white {
@@ -841,6 +841,14 @@ h6,
 	.__separator {
 		color: var(--color-action);
 	}
+}
+
+#breadcrumbs .breadcrumb-separator {
+	display: inline-flex;
+	width: 12px;
+	height: 12px;
+	object-fit: contain;
+	margin: 0 8px;
 }
 
 

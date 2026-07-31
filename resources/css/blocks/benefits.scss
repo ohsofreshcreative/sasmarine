@@ -1,0 +1,53 @@
+.b-benefits {
+
+	.__cards {
+		position: relative;
+		padding-top: 24px;
+		padding-bottom: 32px;
+
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 16px;
+			border-bottom: 1px dashed rgba(6, 65, 102, 0.3);
+		}
+	}
+
+	.__card {
+		min-height: 120px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		position: relative;
+		box-sizing: border-box;
+		padding-bottom: 24px;
+
+		&:not(:nth-child(5n))::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: -28px;
+			border-right: 1px dashed rgba(6, 65, 102, 0.3);
+		}
+	}
+
+	@media (max-width: 767px) {
+		.__card::after {
+			display: none;
+		}
+	}
+
+	@media (min-width: 768px) and (max-width: 1023px) {
+		.__card::after {
+			display: none;
+		}
+
+		.__card:nth-child(odd):not(:last-child)::after {
+			display: block;
+		}
+	}
+}

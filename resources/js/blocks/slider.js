@@ -5,28 +5,66 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-document.querySelectorAll('.b-slider').forEach((section) => {
-	const slider = section.querySelector('.slider-standard');
+const initSlider = (scope = document) => {
+	const sections = scope.querySelectorAll ? scope.querySelectorAll('.b-slider') : [];
 
-	if (!slider) return;
+	sections.forEach((section) => {
+		const slider = section.querySelector('.slider-standard');
+		const prev = section.querySelector('.__prev');
+		const next = section.querySelector('.__next');
+		const pagination = section.querySelector('.__pagination');
 
-	new Swiper(slider, {
-		modules: [Navigation, Pagination],
+		if (!slider || !prev || !next || !pagination || slider.classList.contains('swiper-initialized')) return;
 
-		slidesPerView: 1,
-		spaceBetween: 40,
-		grabCursor: true,
-		loop: false,
+		slider.classList.add('swiper-initialized');
 
-		navigation: {
-			nextEl: section.querySelector('.__next'),
-			prevEl: section.querySelector('.__prev'),
-		},
+		new Swiper(slider, {
+			modules: [Navigation, Pagination],
+			slidesPerView: 1,
+			spaceBetween: 40,
+			grabCursor: true,
+			loop: false,
+			observer: true,
+			observeParents: true,
+			watchOverflow: true,
 
-		pagination: {
-			el: section.querySelector('.__pagination'),
-			clickable: true,
-			type: 'bullets',
-		},
+			navigation: {
+				nextEl: next,
+				prevEl: prev,
+			},
+
+			pagination: {
+				el: pagination,
+				clickable: true,
+				type: 'bullets',
+			},
+		});
+
+		requestAnimationFrame(() => {
+			if (slider.swiper) {
+				slider.swiper.update();
+			}
+		});
 	});
-});
+};
+
+if (document.readyState === 'loading') {
+	document.addEventListener('DOMContentLoaded', () => {
+		initSlider(document);
+		window.addEventListener('load', () => initSlider(document), { once: true });
+	}, { once: true });
+} else {
+	initSlider(document);
+	window.addEventListener('load', () => initSlider(document), { once: true });
+}
+
+if (window.acf) {
+	window.acf.addAction('render_block', (el) => {
+		const node = el?.[0] ?? el;
+		if (node) {
+			initSlider(node);
+		}
+	});
+}
+
+export default initSlider;
