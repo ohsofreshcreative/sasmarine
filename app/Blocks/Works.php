@@ -138,6 +138,7 @@ class Works extends Block
 		$fields = [
 			'g_works'    => get_field('g_works'),
 			'work_items' => $work_items,
+			'block_title' => get_field('block-title'),
 
 			'section_id'   => get_field('section_id'),
 			'section_class' => get_field('section_class'),

@@ -8,44 +8,67 @@
 	$section_class => filled($section_class),
 	$background => filled($background) && $background !== 'none',
 	])>
+	@if (!empty($g_hero['button2']))
+	<x-button
+		:href="$g_hero['button2']['url']"
+		variant="white"
+		class=""
+		data-gsap-element="btn">
+		{{ $g_hero['button2']['title'] }}
+	</x-button>
+	@endif
 
 	<img class="absolute -left-70 top-0 z-1 opacity-40" src="/wp-content/uploads/2026/07/marine2.svg" />
 
 	<div class="__wrapper c-main relative z-10">
-		<div class="relative mb-8 md:mb-12">
-			@if (!empty($g_showcase['title']))
-			<div data-gsap-element="title" class="c-title">
-				{{ $g_showcase['title'] }}
+		<div class="relative mb-8 md:mb-12 flex justify-between">
+			<div class="">
+				@if (!empty($g_showcase['title']))
+				<div data-gsap-element="title" class="c-title">
+					{{ $g_showcase['title'] }}
+				</div>
+				@endif
+
+				@if (!empty($g_showcase['header']))
+				<h1 data-gsap-element="header" class="text-h3 text-primary-500 m-title">
+					{{ $g_showcase['header'] }}
+				</h1>
+				@endif
 			</div>
-			@endif
+			<div>
+				@if (!empty($g_showcase['button2']))
+				<x-button
+					:href="$g_showcase['button2']['url']"
+					variant=""
+					class="inline !text-primary"
+					data-gsap-element="">
+					{{ $g_showcase['button2']['title'] }}
+					            <x-icon.arrow-right class="w-3 text-secondary inline"/>
+				</x-button>
+				@endif
 
-			@if (!empty($g_showcase['header']))
-			<h1 data-gsap-element="header" class="text-h3 text-primary-500 m-title">
-				{{ $g_showcase['header'] }}
-			</h1>
-			@endif
+			</div>
 		</div>
-
 		<div class="bg-white p-8">
 			@php
-				$card_title = '';
-				$card_text = '';
-				$btn_href = '';
-				$img_url = '';
-				$img_alt = '';
+			$card_title = '';
+			$card_text = '';
+			$btn_href = '';
+			$img_url = '';
+			$img_alt = '';
 
-				if (!empty($g_showcase['button1_target'])) {
-					$pid = $g_showcase['button1_target'];
-					$card_title = get_the_title($pid);
-					$card_text = get_the_excerpt($pid);
-					$btn_href = get_permalink($pid);
+			if (!empty($g_showcase['button1_target'])) {
+			$pid = $g_showcase['button1_target'];
+			$card_title = get_the_title($pid);
+			$card_text = get_the_excerpt($pid);
+			$btn_href = get_permalink($pid);
 
-					$thumb_id = get_post_thumbnail_id($pid);
-					if ($thumb_id) {
-						$img_url = wp_get_attachment_image_url($thumb_id, 'large');
-						$img_alt = get_post_meta($thumb_id, '_wp_attachment_image_alt', true) ?: get_the_title($pid);
-					}
-				}
+			$thumb_id = get_post_thumbnail_id($pid);
+			if ($thumb_id) {
+			$img_url = wp_get_attachment_image_url($thumb_id, 'large');
+			$img_alt = get_post_meta($thumb_id, '_wp_attachment_image_alt', true) ?: get_the_title($pid);
+			}
+			}
 			@endphp
 
 			<div class="__col grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-20">

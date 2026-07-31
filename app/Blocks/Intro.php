@@ -6,69 +6,59 @@ use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 use App\Support\SectionClasses;
 
-class Showcase extends Block
+class Intro extends Block
 {
-	public $name = 'Tekst oraz zdjęcie';
-	public $description = 'showcase';
-	public $slug = 'showcase';
+	public $name = 'Hero - Podstrona';
+	public $description = 'intro - hero dla podstron';
+	public $slug = 'intro';
 	public $category = 'formatting';
-	public $icon = 'align-pull-left';
-	public $keywords = ['tresc', 'zdjecie'];
+	public $icon = 'align-full-width';
+	public $keywords = ['tresc', 'zdjecie', 'podstrona', 'hero'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
 		'mode' => true,
 		'jsx' => true,
-		'anchor' => true,
-		'customClassName' => true,
 	];
 
 	public function fields()
 	{
-		$showcase = new FieldsBuilder('showcase');
+		$intro = new FieldsBuilder('intro');
 
-		$showcase
-			->setLocation('block', '==', 'acf/showcase') // ważne!
+		$intro
+			->setLocation('block', '==', 'acf/intro') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Tekst oraz zdjęcie',
+				'label' => 'Hero - Podstrona',
 				'open' => false,
 				'multi_expand' => true,
 			])
-			/*--- GROUP ---*/
-			->addTab('Elementy', ['placement' => 'top'])
-			->addGroup('g_showcase', ['label' => ''])
-			->addImage('image', [
-				'label' => 'Obraz',
-				'return_format' => 'array',
-				'preview_size' => 'thumbnail',
-			])
-			->addText('title', ['label' => 'Tytuł'])
+			/*--- TAB #1 ---*/
+			->addTab('Treść', ['placement' => 'top'])
+			->addGroup('g_intro', ['label' => 'intro'])
 			->addText('header', ['label' => 'Nagłówek'])
-			->addWysiwyg('text', [
-				'label' => 'Treść',
-				'tabs' => 'all',
-				'toolbar' => 'full',
-				'media_upload' => true,
-			])
-			->addLink('button1', [
-				'label' => 'Przycisk #1',
-				'return_format' => 'array',
-			])
-						->addLink('button2', [
-				'label' => 'Przycisk - wszystkie realizacje',
-				'return_format' => 'array',
-			])
-			->addPostObject('button1_target', [
-				'label' => 'Przycisk do konretnej realizacji (post)',
-				'post_type' => ['work'],
-				'return_format' => 'id',
-			])
+
 
 			->endGroup()
+
+			/*--- TAB #2 ---*/
+			->addTab('Kafelki', ['placement' => 'top'])
+			->addRepeater('r_intro', [
+				'label' => 'Kafelki',
+				'layout' => 'table', // 'row', 'block', albo 'table'
+				'min' => 1,
+				'button_label' => 'Dodaj kafelek'
+			])
+			->addText('title', [
+				'label' => 'Nagłówek',
+			])
+			->addTextarea('text', [
+				'label' => 'Opis',
+			])
+			->endRepeater()
 
 			/*--- USTAWIENIA BLOKU ---*/
 
@@ -78,12 +68,6 @@ class Showcase extends Block
 			])
 			->addText('section_class', [
 				'label' => 'Dodatkowe klasy CSS',
-			])
-			->addTrueFalse('bgshape', [
-				'label' => 'Kształt w tle',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
 			])
 			->addTrueFalse('nolist', [
 				'label' => 'Brak punktatorów',
@@ -121,9 +105,9 @@ class Showcase extends Block
 					'none' => 'Brak (domyślne)',
 					'section-white' => 'Białe',
 					'section-light' => 'Jasne',
+					'section-gray' => 'Szare',
 					'section-brand' => 'Marki',
 					'section-gradient' => 'Gradient',
-					'section-gradient-light'  => 'Jasny Gradient',
 					'section-dark' => 'Ciemne',
 				],
 				'default_value' => 'none',
@@ -131,24 +115,22 @@ class Showcase extends Block
 				'allow_null' => 0,
 			]);
 
-		return $showcase;
+		return $intro;
 	}
 
 	public function with(): array
 	{
 		$fields = [
-			'block_title' => get_field('block-title'),
-			'g_showcase' => get_field('g_showcase'),
+			'g_intro' => get_field('g_intro'),
+			'r_intro' => get_field('r_intro'),
 
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
 
-			'bgshape' => (bool) get_field('bgshape'),
 			'flip' => (bool) get_field('flip'),
 			'wide' => (bool) get_field('wide'),
 			'nomt' => (bool) get_field('nomt'),
 			'gap' => (bool) get_field('gap'),
-			'nolist' => (bool) get_field('nolist'),
 
 			'background' => get_field('background') ?: 'none',
 		];
@@ -158,7 +140,6 @@ class Showcase extends Block
 			'wide' => 'wide',
 			'nomt' => '!mt-0',
 			'gap' => 'wider-gap',
-			'nolist' => 'no-list',
 		]);
 
 		return $fields;

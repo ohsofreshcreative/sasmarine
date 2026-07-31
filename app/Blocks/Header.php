@@ -51,20 +51,7 @@ class Header extends Block
 				'toolbar' => 'full', // 'basic', 'full'
 				'media_upload' => true,
 			])
-			->addLink('button1', [
-				'label' => 'Przycisk #1',
-				'return_format' => 'array',
-			])
-			->addLink('button2', [
-				'label' => 'Przycisk #2',
-				'return_format' => 'array',
-			])
-			->addTrueFalse('shape', [
-				'label' => 'Kształt pod sekcją',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
+
 			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/

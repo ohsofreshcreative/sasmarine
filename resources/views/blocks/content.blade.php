@@ -9,10 +9,6 @@
 	$background => filled($background) && $background !== 'none',
 	])>
 
-<!-- <div
-	class="absolute inset-0 z-1 pointer-events-none"
-	style="background: linear-gradient(270deg, #A9D8F5 0%, #C7E8FC 100%);">
-</div> -->
 
 	<div class="__wrapper c-main relative z-10">
 
@@ -31,7 +27,7 @@
 				{{ $g_content['title'] }}
 			</div>
 			@endif
-				<h2 data-gsap-element="header" class="text-h4 m-header text-primary">{{ $g_content['header'] }}</h2>
+				<h2 data-gsap-element="header" class="text-h3 m-header text-primary">{{ $g_content['header'] }}</h2>
 				<div data-gsap-element="txt" class="__txt">
 					{!! $g_content['text'] !!}
 				</div>
