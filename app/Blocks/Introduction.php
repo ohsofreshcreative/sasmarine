@@ -6,82 +6,57 @@ use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 use App\Support\SectionClasses;
 
-class About extends Block
+class Introduction extends Block
 {
-	public $name = 'O firmie';
-	public $description = 'about';
-	public $slug = 'about';
+	public $name = 'Hero - Podstrona';
+	public $description = 'introduction - hero dla podstron';
+	public $slug = 'introduction';
 	public $category = 'formatting';
-	public $icon = 'universal-access-alt';
-	public $keywords = ['tresc', 'zdjecie'];
+	public $icon = 'align-full-width';
+	public $keywords = ['tresc', 'zdjecie', 'podstrona', 'hero', 'introduction'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
 		'mode' => true,
 		'jsx' => true,
-		'anchor' => true,
-		'customClassName' => true,
 	];
 
 	public function fields()
 	{
-		$about = new FieldsBuilder('about');
+		$introduction = new FieldsBuilder('introduction');
 
-		$about
-			->setLocation('block', '==', 'acf/about') // ważne!
+		$introduction
+			->setLocation('block', '==', 'acf/introduction') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'O firmie',
+				'label' => 'Hero - Podstrona',
 				'open' => false,
 				'multi_expand' => true,
 			])
-			/*--- GROUP ---*/
-			->addTab('Elementy', ['placement' => 'top'])
-			->addGroup('g_about', ['label' => ''])
+			/*--- TAB #1 ---*/
+			->addTab('Treść', ['placement' => 'introduction'])
+			->addGroup('g_introduction', ['label' => 'introduction'])
+
+			->addText('title', ['label' => 'Tytuł'])
+			->addWysiwyg('text', [
+				'label' => 'Treść',
+				'tabs' => 'all', // 'visual', 'text', 'all'
+				'toolbar' => 'full', // 'basic', 'full'
+				'media_upload' => true,
+			])
 			->addImage('image', [
 				'label' => 'Obraz',
 				'return_format' => 'array',
 				'preview_size' => 'thumbnail',
 			])
-			->addText('header', ['label' => 'Nagłówek'])
-			->addWysiwyg('text', [
-				'label' => 'Treść',
-				'tabs' => 'all',
-				'toolbar' => 'full',
-				'media_upload' => true,
-			])
-			->addImage('img', [
-				'label' => 'Obraz - logo',
-				'return_format' => 'array',
-				'preview_size' => 'thumbnail',
-			])
 			->endGroup()
-
-			/*--- TAB #2 ---*/
-			->addTab('Kafelki', ['placement' => 'top'])
-			->addRepeater('r_about', [
-				'label' => 'Kafelki',
-				'layout' => 'table', // 'row', 'block', albo 'table'
-				'min' => 1,
-				'button_label' => 'Dodaj kafelek'
-			])
-			->addText('number', [
-				'label' => 'Numer',
-			])
-			->addText('title', [
-				'label' => 'Tytuł',
-			])
-			->addTextarea('text', [
-				'label' => 'Opis',
-			])
-			->endRepeater()
 
 			/*--- USTAWIENIA BLOKU ---*/
 
-			->addTab('Ustawienia bloku', ['placement' => 'top'])
+			->addTab('Ustawienia bloku', ['placement' => 'introduction'])
 			->addText('section_id', [
 				'label' => 'ID',
 			])
@@ -134,14 +109,13 @@ class About extends Block
 				'allow_null' => 0,
 			]);
 
-		return $about;
+		return $introduction;
 	}
 
 	public function with(): array
 	{
 		$fields = [
-			'g_about' => get_field('g_about'),
-			'r_about' => get_field('r_about'),
+			'g_introduction' => get_field('g_introduction'),
 
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
@@ -150,7 +124,6 @@ class About extends Block
 			'wide' => (bool) get_field('wide'),
 			'nomt' => (bool) get_field('nomt'),
 			'gap' => (bool) get_field('gap'),
-			'nolist' => (bool) get_field('nolist'),
 
 			'background' => get_field('background') ?: 'none',
 		];
@@ -160,7 +133,6 @@ class About extends Block
 			'wide' => 'wide',
 			'nomt' => '!mt-0',
 			'gap' => 'wider-gap',
-			'nolist' => 'no-list',
 		]);
 
 		return $fields;

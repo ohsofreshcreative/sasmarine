@@ -5,6 +5,16 @@ use App\Walkers\MobileDropdownWalker;
 $linkedin_icon = get_field('linkedin_icon', 'option');
 $linkedin_icon_url = is_array($linkedin_icon) ? ($linkedin_icon['url'] ?? '') : $linkedin_icon;
 $linkedin_link = get_field('linkedin_link', 'option');
+
+$logo_url = '';
+$logo_alt = 'Logo';
+
+if (is_array($logo)) {
+    $logo_url = $logo['url'] ?? '';
+    $logo_alt = $logo['alt'] ?? 'Logo';
+} elseif (!empty($logo)) {
+    $logo_url = $logo;
+}
 @endphp
 
 <header x-data="{ mobileOpen: false }" class="relative top-0 z-50 bg-white masthead fixed-top">
@@ -12,8 +22,8 @@ $linkedin_link = get_field('linkedin_link', 'option');
 	<!-- Desktop Header -->
 	<div class="items-center justify-between hidden h-full py-4 px-12 mx-auto lg:flex">
 		<a class="brand shrink-0" href="{{ home_url('/') }}">
-			@if ($logo)
-			<img src="{{ $logo['url'] }}" alt="{{ $logo['alt'] ?? 'Logo' }}" class="w-auto h-18">
+			@if ($logo_url)
+			<img src="{{ $logo_url }}" alt="{{ $logo_alt }}" class="w-auto h-18">
 			@else
 			<span class="text-xl font-bold">{{ $siteName }}</span>
 			@endif
@@ -47,8 +57,8 @@ $linkedin_link = get_field('linkedin_link', 'option');
 	<!-- Mobile Header Bar -->
 	<div class="flex items-center justify-between p-4 mobile-menu fixed-top lg:hidden">
 		<a class="brand shrink-0" href="{{ home_url('/') }}">
-			@if ($logo)
-			<img src="{{ $logo['url'] }}" alt="{{ $logo['alt'] ?? 'Logo' }}" class="w-auto h-12">
+			@if ($logo_url)
+			<img src="{{ $logo_url }}" alt="{{ $logo_alt }}" class="w-auto h-12">
 			@else
 			<span class="text-lg font-bold">{{ $siteName }}</span>
 			@endif
@@ -84,7 +94,7 @@ $linkedin_link = get_field('linkedin_link', 'option');
 		aria-label="Menu mobilne">
 		<div class="p-4 relative z-10">
 			<div class="flex items-center justify-between mb-6">
-				<span class=""><a class="brand shrink-0" href="{{ home_url('/') }}"><img src="{{ $logo['url'] }}" alt="{{ $logo['alt'] ?? 'Logo' }}" class="w-auto h-12 invert grayscale"></a></span>
+				<span class=""><a class="brand shrink-0" href="{{ home_url('/') }}"><img src="{{ $logo_url }}" alt="{{ $logo_alt }}" class="w-auto h-12 invert grayscale"></a></span>
 				<button
 					@click="mobileOpen = false"
 					class="p-2 text-white rounded-md">

@@ -47,7 +47,27 @@ class Top extends Block
 				'toolbar' => 'full', // 'basic', 'full'
 				'media_upload' => true,
 			])
-
+->addTrueFalse('show_image', [
+	'label' => 'Wyświetl zdjęcie',
+	'ui' => 1,
+	'ui_on_text' => 'Tak',
+	'ui_off_text' => 'Nie',
+	'default_value' => 0,
+])
+->addImage('image', [
+	'label' => 'Obraz',
+	'return_format' => 'array',
+	'preview_size' => 'thumbnail',
+	'conditional_logic' => [
+		[
+			[
+				'field' => 'show_image',
+				'operator' => '==',
+				'value' => 1,
+			],
+		],
+	],
+])
 			->addTrueFalse('shape', [
 				'label' => 'Kształt pod sekcją',
 				'ui' => 1,

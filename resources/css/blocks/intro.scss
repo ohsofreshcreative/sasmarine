@@ -24,13 +24,32 @@
 		box-sizing: border-box;
 		padding-bottom: 24px;
 
-		&:not(:nth-child(5n))::after {
+		&:not(:nth-child(4n))::after {
 			content: '';
 			position: absolute;
 			top: 0;
 			right: 0;
-			bottom: -28px;
+			bottom: -48px;
 			border-right: 1px dashed #fff;
+		}
+	}
+
+	@media (max-width: 767px) {
+		.__cards::before {
+			display: none;
+		}
+
+		.__card {
+			padding-bottom: 16px;
+			border-bottom: 1px dashed rgba(255, 255, 255, 0.25);
+		}
+
+		.__card:last-child {
+			border-bottom: none;
+		}
+
+		.__card::after {
+			display: none;
 		}
 	}
 

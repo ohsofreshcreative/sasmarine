@@ -21,7 +21,8 @@
 		@if (!empty($offer_items))
 		<div class="flex flex-col lg:gap-22 gap-10">
 			@foreach ($offer_items as $item)
-			<div data-gsap-element="item" class="__col bg-white border border-dashed border-primary p-6">
+			<div data-gsap-element="item" class="__col bg-white border border-dashed border-primary p-6 relative">
+				<a href="{{ $item['url'] }}" class="absolute inset-0 z-10" aria-label="Zobacz ofertę {{ $item['title'] }}"></a>
 
 				<div class="grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-16">
 					<figure data-gsap-element="img" class="__img h-full relative {{ $loop->even ? 'md:order-2' : '' }}">

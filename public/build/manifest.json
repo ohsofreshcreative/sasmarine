@@ -29,7 +29,7 @@
     "src": "editor.deps.json"
   },
   "resources/css/app.css": {
-    "file": "assets/app-CgF96Xok.css",
+    "file": "assets/app-DaDoai5J.css",
     "name": "app",
     "names": [
       "app.css"
@@ -41,11 +41,12 @@
       "assets/phone-CsaqUbl9.svg",
       "assets/mail-BsdHUSBF.svg",
       "assets/bottom-arrow-BE5KB43S.svg",
+      "assets/ellipse-Bs9JHnNB.svg",
       "assets/pointer-DCg2HeqG.svg"
     ]
   },
   "resources/css/editor.css": {
-    "file": "assets/editor-CzUq3PNN.css",
+    "file": "assets/editor-BpXCZJxp.css",
     "name": "editor",
     "names": [
       "editor.css"
@@ -60,6 +61,10 @@
   "resources/images/btn-arrow.svg": {
     "file": "assets/btn-arrow-BCoyKg90.svg",
     "src": "resources/images/btn-arrow.svg"
+  },
+  "resources/images/ellipse.svg": {
+    "file": "assets/ellipse-Bs9JHnNB.svg",
+    "src": "resources/images/ellipse.svg"
   },
   "resources/images/mail.svg": {
     "file": "assets/mail-BsdHUSBF.svg",

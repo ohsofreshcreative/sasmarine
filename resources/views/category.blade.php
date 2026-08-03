@@ -59,10 +59,16 @@ $unique_id = 'clip_'.uniqid();
 
 
 @if (have_posts())
+@php $postIndex = 0; @endphp
 <div class="__posts c-main !mt-10 posts grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-	@while (have_posts()) @php(the_post())
+	@while (have_posts())
+		@php
+			the_post();
+			$postCardClass = $postIndex === 0 ? 'md:col-span-2 lg:col-span-2' : '';
+			$postIndex++;
+		@endphp
 
-	@includeFirst(['partials.content-' . get_post_type(), 'partials.content'])
+		@includeFirst(['partials.content-' . get_post_type(), 'partials.content'])
 	@endwhile
 </div>
 

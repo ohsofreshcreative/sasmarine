@@ -8,159 +8,126 @@ use App\Support\SectionClasses;
 
 class Showcase extends Block
 {
-	public $name = 'Tekst oraz zdjęcie';
-	public $description = 'showcase';
-	public $slug = 'showcase';
-	public $category = 'formatting';
-	public $icon = 'align-pull-left';
-	public $keywords = ['tresc', 'zdjecie'];
-	public $mode = 'edit';
-	public $supports = [
-		'align' => false,
-		'mode' => true,
-		'jsx' => true,
-		'anchor' => true,
-		'customClassName' => true,
-	];
+    public $name = 'Showcase';
+    public $description = 'showcase';
+    public $slug = 'showcase';
+    public $category = 'formatting';
+    public $icon = 'images';
+    public $keywords = ['showcase', 'realizacja', 'oferta'];
+    public $mode = 'edit';
+    public $supports = [
+        'align' => false,
+        'mode' => true,
+        'jsx' => true,
+    ];
 
-	public function fields()
-	{
-		$showcase = new FieldsBuilder('showcase');
+    public function fields()
+    {
+        $showcase = new FieldsBuilder('showcase');
 
-		$showcase
-			->setLocation('block', '==', 'acf/showcase') // ważne!
-			->addText('block-title', [
-				'label' => 'Tytuł',
-				'required' => 0,
-			])
-			->addAccordion('accordion1', [
-				'label' => 'Tekst oraz zdjęcie',
-				'open' => false,
-				'multi_expand' => true,
-			])
-			/*--- GROUP ---*/
-			->addTab('Elementy', ['placement' => 'top'])
-			->addGroup('g_showcase', ['label' => ''])
-			->addImage('image', [
-				'label' => 'Obraz',
-				'return_format' => 'array',
-				'preview_size' => 'thumbnail',
-			])
-			->addText('title', ['label' => 'Tytuł'])
-			->addText('header', ['label' => 'Nagłówek'])
-			->addWysiwyg('text', [
-				'label' => 'Treść',
-				'tabs' => 'all',
-				'toolbar' => 'full',
-				'media_upload' => true,
-			])
-			->addLink('button1', [
-				'label' => 'Przycisk #1',
-				'return_format' => 'array',
-			])
-						->addLink('button2', [
-				'label' => 'Przycisk - wszystkie realizacje',
-				'return_format' => 'array',
-			])
-			->addPostObject('button1_target', [
-				'label' => 'Przycisk do konretnej realizacji (post)',
-				'post_type' => ['work'],
-				'return_format' => 'id',
-			])
+        $showcase
+            ->setLocation('block', '==', 'acf/showcase')
+            ->addText('block-title', [
+                'label' => 'Tytuł',
+                'required' => 0,
+            ])
+            ->addAccordion('accordion1', [
+                'label' => 'Showcase',
+                'open' => false,
+                'multi_expand' => true,
+            ])
+            ->addTab('Treść', ['placement' => 'top'])
+            ->addGroup('g_showcase', ['label' => ''])
+                ->addText('title', ['label' => 'Tytuł'])
+                ->addText('header', ['label' => 'Nagłówek'])
+                ->addLink('button1', [
+                    'label' => 'Przycisk #1',
+                    'return_format' => 'array',
+                ])
+                ->addPostObject('button1_target', [
+                    'label' => 'Cel przycisku #1',
+                    'post_type' => ['work', 'offer'],
+                    'return_format' => 'id',
+                    'ui' => 1,
+                    'allow_null' => 1,
+                ])
+                ->addLink('button2', [
+                    'label' => 'Przycisk #2',
+                    'return_format' => 'array',
+                ])
+            ->endGroup()
+            ->addTab('Ustawienia bloku', ['placement' => 'top'])
+            ->addText('section_id', [
+                'label' => 'ID',
+            ])
+            ->addText('section_class', [
+                'label' => 'Dodatkowe klasy CSS',
+            ])
+            ->addTrueFalse('flip', [
+                'label' => 'Odwrotna kolejność',
+                'ui' => 1,
+                'ui_on_text' => 'Tak',
+                'ui_off_text' => 'Nie',
+            ])
+            ->addTrueFalse('wide', [
+                'label' => 'Szeroka kolumna',
+                'ui' => 1,
+                'ui_on_text' => 'Tak',
+                'ui_off_text' => 'Nie',
+            ])
+            ->addTrueFalse('nomt', [
+                'label' => 'Usunięcie marginesu górnego',
+                'ui' => 1,
+                'ui_on_text' => 'Tak',
+                'ui_off_text' => 'Nie',
+            ])
+            ->addTrueFalse('gap', [
+                'label' => 'Większy odstęp',
+                'ui' => 1,
+                'ui_on_text' => 'Tak',
+                'ui_off_text' => 'Nie',
+            ])
+            ->addSelect('background', [
+                'label' => 'Kolor tła',
+                'choices' => [
+                    'none' => 'Brak (domyślne)',
+                    'section-white' => 'Białe',
+                    'section-light' => 'Jasne',
+                    'section-gray' => 'Szare',
+                    'section-brand' => 'Marki',
+                    'section-gradient' => 'Gradient',
+                    'section-dark' => 'Ciemne',
+                ],
+                'default_value' => 'none',
+                'ui' => 0,
+                'allow_null' => 0,
+            ]);
 
-			->endGroup()
+        return $showcase;
+    }
 
-			/*--- USTAWIENIA BLOKU ---*/
+    public function with(): array
+    {
+        $fields = [
+            'block_title' => get_field('block-title'),
+            'g_showcase' => get_field('g_showcase') ?: [],
+            'section_id' => get_field('section_id'),
+            'section_class' => get_field('section_class'),
+            'flip' => (bool) get_field('flip'),
+            'wide' => (bool) get_field('wide'),
+            'nomt' => (bool) get_field('nomt'),
+            'gap' => (bool) get_field('gap'),
+            'background' => get_field('background') ?: 'none',
+        ];
 
-			->addTab('Ustawienia bloku', ['placement' => 'top'])
-			->addText('section_id', [
-				'label' => 'ID',
-			])
-			->addText('section_class', [
-				'label' => 'Dodatkowe klasy CSS',
-			])
-			->addTrueFalse('bgshape', [
-				'label' => 'Kształt w tle',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('nolist', [
-				'label' => 'Brak punktatorów',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('flip', [
-				'label' => 'Odwrotna kolejność',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('wide', [
-				'label' => 'Szeroka kolumna',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('nomt', [
-				'label' => 'Usunięcie marginesu górnego',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('gap', [
-				'label' => 'Większy odstęp',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addSelect('background', [
-				'label' => 'Kolor tła',
-				'choices' => [
-					'none' => 'Brak (domyślne)',
-					'section-white' => 'Białe',
-					'section-light' => 'Jasne',
-					'section-brand' => 'Marki',
-					'section-gradient' => 'Gradient',
-					'section-gradient-light'  => 'Jasny Gradient',
-					'section-dark' => 'Ciemne',
-				],
-				'default_value' => 'none',
-				'ui' => 0, // Ulepszony interfejs
-				'allow_null' => 0,
-			]);
+        $fields['sectionClass'] = SectionClasses::fromMap($fields, [
+            'flip' => 'order-flip',
+            'wide' => 'wide',
+            'nomt' => '!mt-0',
+            'gap' => 'wider-gap',
+        ]);
 
-		return $showcase;
-	}
-
-	public function with(): array
-	{
-		$fields = [
-			'block_title' => get_field('block-title'),
-			'g_showcase' => get_field('g_showcase'),
-
-			'section_id' => get_field('section_id'),
-			'section_class' => get_field('section_class'),
-
-			'bgshape' => (bool) get_field('bgshape'),
-			'flip' => (bool) get_field('flip'),
-			'wide' => (bool) get_field('wide'),
-			'nomt' => (bool) get_field('nomt'),
-			'gap' => (bool) get_field('gap'),
-			'nolist' => (bool) get_field('nolist'),
-
-			'background' => get_field('background') ?: 'none',
-		];
-
-		$fields['sectionClass'] = SectionClasses::fromMap($fields, [
-			'flip' => 'order-flip',
-			'wide' => 'wide',
-			'nomt' => '!mt-0',
-			'gap' => 'wider-gap',
-			'nolist' => 'no-list',
-		]);
-
-		return $fields;
-	}
+        return $fields;
+    }
 }
+

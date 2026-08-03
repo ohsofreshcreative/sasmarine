@@ -22,20 +22,32 @@
 		@endif
 
 		@if (!empty($work_items))
-		<div class="flex flex-col  gap-8">
+		<div class="flex flex-col gap-8">
 			@foreach ($work_items as $item)
-			<div data-gsap-element="item" class="__col bg-white p-6">
+			<div data-gsap-element="item" class="__col bg-white p-6 relative overflow-hidden">
+				<a href="{{ $item['url'] }}" class="absolute inset-0 z-10" aria-label="Zobacz realizację {{ $item['title'] }}"></a>
 
 				<div class="grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-16">
-					<figure data-gsap-element="img" class="__img h-full relative {{ $loop->even ? 'md:order-2' : '' }}">
-						<picture>
-						<img class="md:h-100 h-60 w-full object-cover rounded-md" src="{{ $item['image_url'] ?? '' }}" alt="{{ $item['image_alt'] ?? '' }}">
-					</figure>
-
-					<div class="__content {{ $loop->even ? 'md:order-1' : '' }}">
+					<div class="__content pr-0 md:pr-10">
 						<h2 data-gsap-element="header" class="text-h5 m-header">{{ $item['title'] }}</h2>
+
+						<div class="flex flex-wrap gap-4 text-sm text-slate-500 mt-4">
+							@if (!empty($item['ship_name']))
+								<span class="font-semibold">Nazwa statku:</span> {{ $item['ship_name'] }}
+							@endif
+							@if (!empty($item['imo']))
+								<span class="font-semibold">IMO:</span> {{ $item['imo'] }}
+							@endif
+							@if (!empty($item['unit_type']))
+								<span class="font-semibold">Typ jednostki:</span> {{ $item['unit_type'] }}
+							@endif
+							@if (!empty($item['realization_place']))
+								<span class="font-semibold">Miejsce realizacji:</span> {{ $item['realization_place'] }}
+							@endif
+						</div>
+
 						@if (!empty($item['excerpt']))
-						<div data-gsap-element="txt" class="__txt text-black text-lg">
+						<div data-gsap-element="txt" class="__txt text-black text-lg mt-6 leading-relaxed">
 							<p>{!! $item['excerpt'] !!}</p>
 						</div>
 						@endif
@@ -44,6 +56,12 @@
 							Zobacz realizację <x-icon.arrow-right class="w-3 text-secondary" />
 						</span>
 					</div>
+
+					<figure data-gsap-element="img" class="__img h-full relative">
+						<picture>
+							<img class="md:h-120 h-72 w-full object-cover rounded-md" src="{{ $item['image_url'] ?? '' }}" alt="{{ $item['image_alt'] ?? '' }}">
+						</picture>
+					</figure>
 				</div>
 
 			</div>

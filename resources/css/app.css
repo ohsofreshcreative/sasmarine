@@ -171,7 +171,8 @@
 @import '../css/blocks/systems.scss';
 @import '../css/blocks/signals.scss';
 @import '../css/blocks/intro.scss';
-
+@import '../css/blocks/study.scss';
+@import '../css/blocks/introduction.scss';
 
 
 @import '../css/blocks/hero.scss';

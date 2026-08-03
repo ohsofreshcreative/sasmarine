@@ -26,7 +26,7 @@
         <div data-gsap-element="item" class="__col bg-white border border-dashed border-primary p-6">
             <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-16">
                 @if (!empty($item['image']['url']))
-                <figure data-gsap-element="img" class="__img h-full relative {{ $loop->even ? 'md:order-2' : '' }}">
+               <figure data-gsap-element="img" class="__img h-full relative {{ $loop->odd ? 'md:order-2' : '' }}">
                     <picture>
                         <img class="md:h-[400px] h-[240px] w-full object-cover rounded-md"
                              src="{{ $item['image']['url'] }}"
@@ -38,7 +38,7 @@
                 </figure>
                 @endif
 
-                <div class="__content {{ $loop->even ? 'md:order-1' : '' }}">
+                <div class="__content {{ $loop->odd ? 'md:order-1' : '' }}">
                     @if (!empty($item['title']))
                     <h2 data-gsap-element="header" class="text-h5 m-header">{{ $item['title'] }}</h2>
                     @endif

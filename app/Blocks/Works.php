@@ -120,17 +120,27 @@ class Works extends Block
 
 		$work_items = [];
 		foreach ($works_query->posts as $post) {
-			$thumb_id   = get_post_thumbnail_id($post->ID);
-			$icon       = get_field('work_icon', $post->ID);
+			$thumb_id = get_post_thumbnail_id($post->ID);
+			$icon = get_field('work_icon', $post->ID);
+
+			$ship_name = get_field('ship_name', $post->ID) ?: get_field('nazwa_statku', $post->ID);
+			$imo = get_field('imo', $post->ID) ?: get_field('ship_imo', $post->ID) ?: get_field('number_imo', $post->ID);
+			$unit_type = get_field('unit_type', $post->ID) ?: get_field('typ_jednostki', $post->ID) ?: get_field('type', $post->ID);
+			$realization_place = get_field('realization_place', $post->ID) ?: get_field('miejsce_realizacji', $post->ID) ?: get_field('place', $post->ID);
+
 			$work_items[] = [
-				'id'        => $post->ID,
-				'title'     => $post->post_title,
-				'excerpt'   => get_the_excerpt($post),
-				'url'       => get_permalink($post->ID),
-				'image_url' => $thumb_id ? wp_get_attachment_image_url($thumb_id, 'large') : null,
-				'image_alt' => $thumb_id ? get_post_meta($thumb_id, '_wp_attachment_image_alt', true) : '',
-				'icon_url'  => $icon['url'] ?? null,
-				'icon_alt'  => $icon['alt'] ?? '',
+				'id'                 => $post->ID,
+				'title'              => $post->post_title,
+				'excerpt'            => get_the_excerpt($post),
+				'url'                => get_permalink($post->ID),
+				'image_url'          => $thumb_id ? wp_get_attachment_image_url($thumb_id, 'large') : null,
+				'image_alt'          => $thumb_id ? get_post_meta($thumb_id, '_wp_attachment_image_alt', true) : '',
+				'icon_url'           => $icon['url'] ?? null,
+				'icon_alt'           => $icon['alt'] ?? '',
+				'ship_name'          => $ship_name,
+				'imo'                => $imo,
+				'unit_type'          => $unit_type,
+				'realization_place'  => $realization_place,
 			];
 		}
 		wp_reset_postdata();

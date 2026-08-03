@@ -3,11 +3,12 @@
 <section
 	data-gsap-anim="section"
 	@if(!empty($section_id)) id="{{ $section_id }}" @endif
-	@class([ 'b-intro relative -spt overflow-visible' ,
+	@class([ 'b-intro relative -spt overflow-hidden' ,
 	$sectionClass=> filled($sectionClass),
 	$section_class => filled($section_class),
 	$background => filled($background) && $background !== 'none',
 	])>
+		<img class="absolute -right-20 -top-20 z-8 " src="/wp-content/uploads/2026/08/thunder-shape.svg" />
 @if (!empty($g_intro['image']))
 <figure
     class="absolute right-0 top-1/2 -translate-y-1/2
@@ -28,7 +29,7 @@
 		{!! yoast_breadcrumb('<p id="breadcrumbs">','</p>') !!}
 		@endif
 	</div>
-		<div class="__content relative flex flex-col justify-center w-full z-20 pb-46">
+		<div class="__content relative flex flex-col justify-center w-full z-20 pb-26">
 			<h1 data-gsap-element="header" class="text-h2 text-white">
 				{{ $g_intro['header'] }}
 			</h1>
@@ -36,7 +37,7 @@
 		
 
 		@if (!empty($r_intro))
-<div class="__cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 mt-10">
+<div class="__cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-10">
 	@foreach ($r_intro as $item)
 		<div data-gsap-element="card" class="__card relative p-8 text-center ">
 
