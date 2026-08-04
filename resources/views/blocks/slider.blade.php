@@ -32,7 +32,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="swiper slider-standard relative  z-20 mt-14 ">
+		<div class="swiper slider-standard relative  z-20 md:mt-14 mt-8">
 			<div class="swiper-wrapper  w-full shadow-sm">
 				@foreach ($slides as $slide)
 				<div class="swiper-slide p-8 bg-white h-auto">
