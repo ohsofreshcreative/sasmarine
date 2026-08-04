@@ -49,7 +49,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
       <img class="w-8 h-8 mb-5" src="/wp-content/uploads/2026/07/in.svg" />
 
         @endif -->
-
+<img class="w-8 h-8 mb-5" src="/wp-content/uploads/2026/07/in.svg" />
         <h5 class="mb-5 !text-xl text-primary-900">
             {{ get_the_title($post->ID) }}
         </h5>

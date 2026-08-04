@@ -1559,11 +1559,6 @@
           "color": "var(--color-primary-300)"
         },
         {
-          "name": "Secondary (Light)",
-          "slug": "secondary-light",
-          "color": "var(--color-secondary-200)"
-        },
-        {
           "name": "Secondary (Lighter)",
           "slug": "secondary-lighter",
           "color": "var(--color-secondary-100)"
