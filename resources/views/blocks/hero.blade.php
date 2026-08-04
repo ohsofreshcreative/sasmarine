@@ -18,7 +18,7 @@
     @endif
     <div class="absolute inset-0 z-1 pointer-events-none" style="background: linear-gradient(269deg, rgba(6, 65, 102, 0.80) 14.45%, rgba(2, 22, 34, 0.80) 90.6%)"></div>
     <div class=" __wrapper c-main relative z-10">
-        <div class="__content relative flex flex-col justify-center w-full md:w-1/2 z-20 pt-48 pb-62">
+        <div class="__content relative flex flex-col justify-center w-full md:w-1/2 z-20 md:pt-48 pt-20 md:pb-62 pb-32">
 			@if (!empty($g_hero['title']))
 			<div data-gsap-element="title" class="c-title !text-white">
 				{{ $g_hero['title'] }}

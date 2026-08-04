@@ -11,14 +11,24 @@
 
 
 	<div class="__wrapper c-main relative z-10">
-
 		<div class="__col grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-20">
 			@if (!empty($g_content['image']))
-			<figure data-gsap-element="img" class="__img h-full order1">
-				<picture>
-					<img class=" h-[504px] max-h-[504px] w-full object-cover" src="{{ $g_content['image']['url'] }}" alt="{{ $g_content['image']['alt'] ?? '' }}">
-				</picture>
-			</figure>
+			<figure data-gsap-element="img" class="__img relative h-full order1">
+	<picture>
+		<img 
+			class="h-[320px] md:h-[504px] max-h-[504px] w-full object-cover" 
+			src="{{ $g_content['image']['url'] }}" 
+			alt="{{ $g_content['image']['alt'] ?? '' }}"
+		>
+	</picture>
+	@if($overlay_image && !empty($overlay_image_file))
+<img
+	class="__overlay-image absolute -top-8 -left-8 w-20 md:-top-19 md:-left-20 md:w-50 z-10"
+	src="{{ $overlay_image_file['url'] }}"
+	alt="{{ $overlay_image_file['alt'] ?? '' }}"
+>
+	@endif
+</figure>
 			@endif
 
 			<div class="__content order2">

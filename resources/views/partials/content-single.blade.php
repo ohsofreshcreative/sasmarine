@@ -1,130 +1,240 @@
 @php
 $categories = get_the_category();
-$category = !empty($categories) ? $categories[0] : null;
+$category = null;
+
+foreach ($categories as $cat) {
+    if ($cat->slug !== 'aktualnosci') {
+        $category = $cat;
+        break;
+    }
+}
 @endphp
 
-<section data-gsap-anim="section" class="hero-blog bg-gradient relative overflow-visible">
+<section data-gsap-anim="section" class="hero-blog  relative bg-primary-800 overflow-hidden mx-auto text-center">
 
-	@if(has_post_thumbnail())
-	<figure class="absolute inset-0 w-full h-full z-0 m-0">
-		<picture class="w-full h-full">
-			<img src="{{ get_the_post_thumbnail_url(get_the_ID(), 'large') }}" alt="{{ get_the_title() }}" class="w-full h-full object-cover" />
-		</picture>
-	</figure>
-	<div class="absolute inset-0 z-1 pointer-events-none" style="background: linear-gradient(90deg, #171F87 0%, rgba(23, 31, 135, 0.60) 100%);"></div>
-	@endif
-
+	<img
+		class="absolute left-1/2 top-0 -translate-x-1/2 h-[120%] overflow-visible"
+		src="/wp-content/uploads/2026/08/blog-shape.svg"
+		alt="">
 	<div class="__wrapper c-main relative z-10 -spt">
 		<div class="__content w-full pb-30">
-			<div data-gsap-element="bread" class="__breadcrumb">
-				@if (function_exists('woocommerce_breadcrumb'))
-				{!! woocommerce_breadcrumb() !!}
+
+
+			<div data-gsap-element="bread" class="__breadcrumb mb-16">
+				@if (function_exists('yoast_breadcrumb'))
+				{!! yoast_breadcrumb('<p id="breadcrumbs">','</p>') !!}
 				@endif
 			</div>
+			@if ($category)
+			<a data-gsap-element="header" href="{{ get_category_link($category->term_id) }}" class="bg-white  rounded-xs text-sm px-4 py-3 mx-auto">{{ $category->name }}</a>
+			@endif
+			<h1 data-gsap-element="header" class="text-h2 text-white mt-6">{{ get_the_title() }}</h1>
+				@php
+			$content = strip_tags(get_the_content());
+			$word_count = str_word_count($content);
+			$reading_time = max(1, ceil($word_count / 200)) . ' min czytania';
+			@endphp
 
-			<div class="__top mt-20">
-				@if ($category)
-				<a data-gsap-element="header" href="{{ get_category_link($category->term_id) }}" class="bg-secondary-lighter hover:bg-secondary-light border border-primary-light rounded-full text-sm px-4 py-3">{{ $category->name }}</a>
-				@endif
-				<h1 data-gsap-element="header" class="text-h2 text-white mt-6">{{ get_the_title() }}</h1>
-				@if(has_excerpt())
-				<div data-gsap-element="content" class="text-white mt-4">
-					{!! get_the_excerpt() !!}
+			<div class="flex p-6 justify-center">
+				<div class="flex flex-wrap items-center gap-3 text-white text-xl  mt-6">
+					<span>{{ get_the_date('Y') }}</span>
+
+					<span class="flex items-center before:mx-2 before:text-white before:content-['•'] md:before:mx-3">
+						{{ get_the_author() }}
+					</span>
+
+					<span class="flex items-center before:mx-2 before:text-whites before:content-['•'] md:before:mx-3">
+						{{ $reading_time }}
+					</span>
 				</div>
-				@endif
 			</div>
 		</div>
-		<a class="absolute bg-secondary hover:bg-secondary-hover w-20 h-20 rounded-full flex items-center justify-center mx-auto bottom-0 translate-y-1/2 z-20" href="#tresc"><img src="{{ get_template_directory_uri() }}/resources/images/anchor-arrow.svg" /></a>
+
 	</div>
 </section>
+
+@if(has_post_thumbnail())
+<div data-gsap-element="image" class="w-full img-2xl rounded-xl overflow-hidden mb-8 c-main pt-22">
+	{!! get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'w-full object-cover']) !!}
+</div>
+@endif
+
+
 
 @php
 $content = apply_filters('the_content', get_the_content());
 
 preg_match_all('/<h([1-4])[^>]*>(.*?)<\/h[1-4]>/', $content, $matches, PREG_SET_ORDER);
 
-		$toc = '<nav class="toc">
-			<ul>';
-				$used_ids = [];
-				foreach ($matches as $match) {
-				$level = $match[1];
-				$title = strip_tags($match[2]);
-				$id = sanitize_title($title);
-				$base_id = $id;
-				$i = 2;
-				while (in_array($id, $used_ids)) {
-				$id = $base_id . '-' . $i;
-				$i++;
-				}
-				$used_ids[] = $id;
-				$content = preg_replace(
-				'/<h' . $level . '[^>]*>' . preg_quote($match[2], '/' ) . '<\/h' . $level . '>/' , '<h' . $level . ' id="' . $id . '">' . $match[2] . '</h' . $level . '>' ,
-					$content,
-					1
-					);
-					$toc .='<li class="toc-h' . $level . '"><a href="#' . $id . '">' . $title . '</a></li>' ;
-					}
-					$toc .='</ul></nav>' ;
-					@endphp
+$toc = '<nav class="toc"><ul>';
+$used_ids = [];
+$counter = 1;
 
-					<div id="tresc" class="__content c-main __entry -smt grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-10">
+foreach ($matches as $match) {
+    $level = $match[1];
+    $title = strip_tags($match[2]);
 
-					<div class="relative md:sticky top-0 md:top-30 h-max">
-						<p class="text-h5 m-title">Spis treści</p>
-						@if(count($matches))
-						{!! $toc !!}
-						@endif
-					</div>
+    $id = sanitize_title($title);
+    $base_id = $id;
+    $i = 2;
 
-					<div id="tresc" class="__entry">
-						{!! $content !!}
-					</div>
+    while (in_array($id, $used_ids)) {
+        $id = $base_id . '-' . $i;
+        $i++;
+    }
 
-					</div>
+    $used_ids[] = $id;
 
-					@php
-					$current_id = get_the_ID();
-					$categories = wp_get_post_categories($current_id);
-					$related_args = [
-					'category__in' => $categories,
-					'post__not_in' => [$current_id],
-					'posts_per_page' => 3,
-					'ignore_sticky_posts' => 1,
-					];
-					$related_query = new WP_Query($related_args);
-					@endphp
+    $content = preg_replace(
+        '/<h' . $level . '[^>]*>' . preg_quote($match[2], '/') . '<\/h' . $level . '>/',
+        '<h' . $level . ' id="' . $id . '">' . $match[2] . '</h' . $level . '>',
+        $content,
+        1
+    );
 
-					@if($related_query->have_posts())
-					<section class="related-posts c-main border-t border-dashed border-secondary-light -smt pt-20 pb-26">
-						<h3 class="text-2xl text-primary mb-6">Zobacz również</h3>
-						<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-							@while($related_query->have_posts())
-							@php($related_query->the_post())
-							<article @php(post_class(''))>
-								<a class="rounded-2xl group" href="{{ get_permalink() }}">
-									<div class="__content relative bg-white rounded-4xl p-6">
-										@if (has_post_thumbnail())
-										<div class="block rounded-2xl overflow-hidden">
-											<img src="{{ get_the_post_thumbnail_url(null, 'large') }}" alt="{{ get_the_title() }}" class="w-full img-s object-cover">
-										</div>
-										@endif
-										<h6 class="mt-6">
-											{!! get_the_title() !!}
-										</h6>
-										<!--  <div class="mt-2">
-            @php(the_excerpt())
-        </div> -->
-										<p href="{{ get_permalink() }}" class="btn btn-outline-secondary group-hover:!bg-secondary group-hover:!text-white !px-6 !py-3 mt-4">
-											Przeczytaj
-										</p>
-									</div>
-								</a>
+    $number = str_pad($counter, 2, '0', STR_PAD_LEFT);
 
-							</article>
-							@endwhile
-							@php(wp_reset_postdata())
-						</div>
-					</section>
+    $toc .= '
+        <li class="toc-h' . $level . '">
+            <a href="#' . $id . '" class="flex items-start gap-2">
+                <span class="w-8 shrink-0 text-third font-nova">' . $number . '</span>
+                <span>' . $title . '</span>
+            </a>
+        </li>';
+
+    $counter++;
+}
+
+$toc .= '</ul></nav>';
+@endphp
+
+<div id="tresc" class="__content c-main __entry -smt grid grid-cols-1 md:grid-cols-[1.5fr_4fr] gap-10">
+
+    <div class="relative md:sticky top-0 md:top-30 h-max">
+        <p class="text-h6 text-primary-900 m-title">Spis treści</p>
+
+        @if(count($matches))
+            {!! $toc !!}
+        @endif
+    </div>
+
+    <div class="__entry">
+        {!! $content !!}
+    </div>
+
+</div>
+
+@php
+$current_id = get_the_ID();
+
+$related_args = [
+    'category__in' => $category ? [$category->term_id] : [],
+    'post__not_in' => [$current_id],
+    'posts_per_page' => 6,
+    'ignore_sticky_posts' => 1,
+];
+
+$related_query = new WP_Query($related_args);
+@endphp
+
+@if($related_query->have_posts())
+
+
+
+		@php
+			$content = strip_tags(get_the_content());
+			$word_count = str_word_count($content);
+			$reading_time = max(1, ceil($word_count / 200)) . ' min czytania';
+			@endphp
+<section class="related-posts bg-primary-400 -smt pt-20 pb-26">
+    <div class="__wrapper c-main">
+
+        <div class="flex items-center justify-between mb-6">
+            <h3 class="text-h3 text-white">Powiązane wpisy</h3>
+
+            <div class="flex gap-4">
+                <div class="related-posts-prev bg-primary-100 w-12 h-12 flex items-center justify-center rounded-xs cursor-pointer transition-all duration-300">
+                    <x-icon.arrow-left class="text-white w-4 h-auto" />
+                </div>
+
+                <div class="related-posts-next bg-primary-100 w-12 h-12 flex items-center justify-center rounded-xs cursor-pointer transition-all duration-300">
+                    <x-icon.arrow-right class="text-white w-4 h-auto" />
+                </div>
+            </div>
+        </div>
+
+        <div class="swiper related-posts-slider overflow-visible">
+            <div class="swiper-wrapper items-stretch">
+
+                @while($related_query->have_posts())
+                    @php($related_query->the_post())
+
+                    <div class="swiper-slide !h-auto">
+                        <article @php(post_class('h-full'))>
+                            <a class="group block h-full" href="{{ get_permalink() }}">
+                                <div class="__content relative bg-white h-full flex flex-col">
+
+                                    @if (has_post_thumbnail())
+                                        <div class="overflow-hidden">
+                                            <img 
+                                                src="{{ get_the_post_thumbnail_url(null, 'large') }}" 
+                                                alt="{{ get_the_title() }}" 
+                                                class="w-full img-s object-cover"
+                                            >
+                                        </div>
+                                    @endif
+
+                                    <div class="flex flex-col flex-1 p-6">
+
+                                        <div class="flex flex-wrap items-center gap-y-2 text-sm text-p-900 md:text-base">
+                                            <span>{{ get_the_date('Y') }}</span>
+
+                                            <span class="flex items-center before:mx-2 before:text-black before:content-['•'] md:before:mx-3">
+                                                {{ get_the_author() }}
+                                            </span>
+
+                                            <span class="flex items-center before:mx-2 before:text-black before:content-['•'] md:before:mx-3">
+                                                {{ $reading_time }}
+                                            </span>
+                                        </div>
+
+                                        <h6 class="mt-6 !text-xl">
+                                            {!! get_the_title() !!}
+                                        </h6>
+
+                                        <div class="mt-2">
+                                            @php(the_excerpt())
+                                        </div>
+
+                                        <div class="mt-auto pt-6">
+                                            <span class="inline-flex items-center text-primary-500">
+                                                Przeczytaj artykuł
+                                                <x-icon.arrow-right class="w-5 ml-2 text-secondary shrink-0" />
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+
+                @endwhile
+
+                @php(wp_reset_postdata())
+
+            </div>
+        </div>
+
+        <div class="mt-10 flex ">
+            <a href="{{ get_permalink(get_option('page_for_posts')) }}" 
+               class="inline-flex items-center justify-center px-8 py-4 bg-white text-primary-500 rounded-xs transition-all duration-300">
+Sprawdź wszystkie artykuły                <x-icon.arrow-right class="w-5 ml-2 text-secondary shrink-0" />
+            </a>
+        </div>
+
+    </div>
+</section>
 					@endif
 
 
@@ -157,4 +267,6 @@ preg_match_all('/<h([1-4])[^>]*>(.*?)<\/h[1-4]>/', $content, $matches, PREG_SET_
 
 							window.addEventListener('scroll', updateActiveLink);
 						});
+
+						
 					</script>

@@ -19,7 +19,7 @@
 			</figure>
 			@endif
 
-			<div class="__panel order2">
+			<div class="__panel order2 px-6 md:px-0 py-8 md:py-0">
 			@if (!empty($g_panel['title']))
 			<div data-gsap-element="title" class="c-title !text-white">
 				{{ $g_panel['title'] }}

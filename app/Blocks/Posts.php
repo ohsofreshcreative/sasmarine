@@ -139,7 +139,7 @@ class Posts extends Block
 		// Get posts from the selected category
 		$args = [
 			'post_type' => 'post',
-			'posts_per_page' => 6,
+			'posts_per_page' => 3,
 			'post_status' => 'publish',
 			'orderby' => 'date',
 			'order' => 'DESC',

@@ -8,7 +8,9 @@
 	$section_class => filled($section_class),
 	$background => filled($background) && $background !== 'none',
 	])>
-		<img class="absolute -right-20 -top-20 z-8 " src="/wp-content/uploads/2026/08/thunder-shape.svg" />
+<img
+	class="absolute -left-50 md:left-auto -top-30 md:-top-20 md:-right-20 z-8"
+	src="/wp-content/uploads/2026/08/thunder-shape.svg" />
 @if (!empty($g_intro['image']))
 <figure
     class="absolute right-0 top-1/2 -translate-y-1/2
@@ -23,13 +25,13 @@
 </figure>
 @endif
 
-	<div class=" __wrapper c-main relative z-10 pt-40 ">
+	<div class=" __wrapper c-main relative z-10  pt-20 ">
 			<div data-gsap-element="bread" class="__breadcrumb mb-14 ">
 		@if (function_exists('yoast_breadcrumb'))
 		{!! yoast_breadcrumb('<p id="breadcrumbs">','</p>') !!}
 		@endif
 	</div>
-		<div class="__content relative flex flex-col justify-center w-full z-20 pb-26">
+		<div class="__content relative flex flex-col justify-center w-full z-20 md:pb-24">
 			<h1 data-gsap-element="header" class="text-h2 text-white">
 				{{ $g_intro['header'] }}
 			</h1>

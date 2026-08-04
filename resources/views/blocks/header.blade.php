@@ -16,17 +16,17 @@
     <img
         src="{{ $g_header['image']['url'] }}"
         alt="{{ $g_header['image']['alt'] }}"
-        class="w-full h-full object-cover object-right-top">
+        class="w-full h-full object-cover object-right-center">
 </figure>
 @endif
 
-	<div class=" __wrapper c-main relative z-10 pt-40">
+	<div class=" __wrapper c-main relative z-10  pt-20">
 			<div data-gsap-element="bread" class="__breadcrumb mb-14 ">
 		@if (function_exists('yoast_breadcrumb'))
 		{!! yoast_breadcrumb('<p id="breadcrumbs">','</p>') !!}
 		@endif
 	</div>
-		<div class="__content relative flex flex-col justify-center w-full md:w-1/2 z-20 pb-46 ">
+		<div class="__content relative flex flex-col justify-center w-full md:w-1/2 z-20 pb-22">
 			<h1 data-gsap-element="header" class="text-h2 text-white">
 				{{ $g_header['title'] }}
 			</h1>

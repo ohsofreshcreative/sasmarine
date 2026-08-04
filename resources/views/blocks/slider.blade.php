@@ -9,8 +9,8 @@
 	$background => filled($background) && $background !== 'none',
 	])>
 	<img class="absolute -left-70 top-0 z-1 opacity-40" src="/wp-content/uploads/2026/07/marine2.svg" />
-	<div class="c-main section-py">
-		<div class="__wrapper relative z-20 flex items-center justify-between">
+	<div class="c-main ">
+		<div class="__wrapper relative z-20 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
 			<div>
 				@if (!empty($title))
 				<div data-gsap-element="title" class="c-title">
@@ -32,10 +32,10 @@
 				</div>
 			</div>
 		</div>
-		<div class="swiper slider-standard relative  z-20 mt-14">
+		<div class="swiper slider-standard relative  z-20 mt-14 ">
 			<div class="swiper-wrapper  w-full shadow-sm">
 				@foreach ($slides as $slide)
-				<div class="swiper-slide p-8 bg-white">
+				<div class="swiper-slide p-8 bg-white h-auto">
 					<div class="grid grid-cols-1 md:grid-cols-2 items-center gap-6 h-full">
 						<div class="__content ">
 							<p class="text-h5 text-black m-header">{{ $slide['title'] }}</p>
@@ -45,12 +45,14 @@
 							<a href="{{ $slide['url'] }}" class="btn-primary btn">Zobacz realizację</a>
 						</div>
 						@if (!empty($slide['image_url']))
-					<figure class="relative m-0 h-full overflow-hidden">
-						<img
-							src="{{ $slide['image_url'] }}"
-							alt="{{ $slide['image_alt'] }}"
-							class="w-full h-full object-cover">
-						</figure>
+
+	<figure class="relative m-0 overflow-hidden h-full">
+		<img
+			src="{{ $slide['image_url'] }}"
+			alt="{{ $slide['image_alt'] }}"
+			class="w-full h-full object-cover">
+	</figure>
+
 						@endif
 					</div>
 				</div>

@@ -17,7 +17,7 @@
 			@if (!empty($g_signals['image']))
 			<figure data-gsap-element="img" class="__img h-full order1">
 				<picture>
-					<img class=" max-h-[600px] w-full object-cover" src="{{ $g_signals['image']['url'] }}" alt="{{ $g_signals['image']['alt'] ?? '' }}">
+					<img class=" md:max-h-[600px] max-h-[380px] w-full object-cover" src="{{ $g_signals['image']['url'] }}" alt="{{ $g_signals['image']['alt'] ?? '' }}">
 				</picture>
 			</figure>
 			@endif

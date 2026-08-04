@@ -24,24 +24,27 @@
 		@if (!empty($work_items))
 		<div class="flex flex-col gap-8">
 			@foreach ($work_items as $item)
-			<div data-gsap-element="item" class="__col bg-white p-6 relative overflow-hidden">
+			<div data-gsap-element="item" class="__col bg-white  relative overflow-hidden">
 				<a href="{{ $item['url'] }}" class="absolute inset-0 z-10" aria-label="Zobacz realizację {{ $item['title'] }}"></a>
 
-				<div class="grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-16">
-					<div class="__content pr-0 md:pr-10">
+				<div class="grid grid-cols-1 md:grid-cols-[5fr_3fr] items-center gap-8 md:gap-12">
+					<div class="__content p-6 pr-0 md:pr-2">
 						<h2 data-gsap-element="header" class="text-h5 m-header">{{ $item['title'] }}</h2>
 
-						<div class="flex flex-wrap gap-4 text-sm text-slate-500 mt-4">
+						<div class="flex flex-wrap gap-2 text-sm text-primary-500 mt-4">
 							@if (!empty($item['ship_name']))
 								<span class="font-semibold">Nazwa statku:</span> {{ $item['ship_name'] }}
 							@endif
 							@if (!empty($item['imo']))
+							<span class="text-black">•</span>
 								<span class="font-semibold">IMO:</span> {{ $item['imo'] }}
 							@endif
 							@if (!empty($item['unit_type']))
+							<span class="text-black">•</span>
 								<span class="font-semibold">Typ jednostki:</span> {{ $item['unit_type'] }}
 							@endif
 							@if (!empty($item['realization_place']))
+							<span class="text-black">•</span>
 								<span class="font-semibold">Miejsce realizacji:</span> {{ $item['realization_place'] }}
 							@endif
 						</div>
@@ -59,7 +62,7 @@
 
 					<figure data-gsap-element="img" class="__img h-full relative">
 						<picture>
-							<img class="md:h-120 h-72 w-full object-cover rounded-md" src="{{ $item['image_url'] ?? '' }}" alt="{{ $item['image_alt'] ?? '' }}">
+							<img class="md:h-120 h-72 w-full object-cover " src="{{ $item['image_url'] ?? '' }}" alt="{{ $item['image_alt'] ?? '' }}">
 						</picture>
 					</figure>
 				</div>

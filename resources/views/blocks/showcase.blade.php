@@ -99,7 +99,7 @@
 				@if (!empty($img_url))
 				<figure data-gsap-element="img" class="__img h-full order2">
 					<picture>
-						<img class="h-[554px] max-h-[554px] w-full object-cover" src="{{ $img_url }}" alt="{{ $img_alt }}">
+						<img class="md:h-[554px] h-[380px] max-h-[554px] w-full object-cover" src="{{ $img_url }}" alt="{{ $img_alt }}">
 					</picture>
 				</figure>
 				@endif

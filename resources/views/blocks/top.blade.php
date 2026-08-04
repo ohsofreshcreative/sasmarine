@@ -9,7 +9,7 @@
 	$background => filled($background) && $background !== 'none',
 	])>
 
-	<div class=" __wrapper c-main relative z-10 pt-40 ">
+	<div class=" __wrapper c-main relative z-10  pt-20 ">
 			<div data-gsap-element="bread" class="__breadcrumb mb-14 ">
 		@if (function_exists('yoast_breadcrumb'))
 		{!! yoast_breadcrumb('<p id="breadcrumbs">','</p>') !!}

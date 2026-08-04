@@ -10,7 +10,9 @@
 	<!-- partnership  -->
 	<div class="__wrapper c-main relative z-20">
 		@if(!empty($g_partnership['title']))
-		<div data-gsap-element="header" class="__wrapper text-white flex items-center justify-between mb-8 md:mb-12">
+<div
+	data-gsap-element="header"
+	class="__wrapper text-white flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8 md:mb-12">
 		<div>
 					@if (!empty($g_partnership['title']))
 			<div data-gsap-element="title" class="c-title !text-white"">

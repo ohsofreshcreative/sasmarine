@@ -68,25 +68,26 @@ $footer_background = get_field('footer_background', 'option');
 
 	</div>
 		<div class="footer-bottom border-t border-primary-100 w-full ">
-		<div class="flex flex-col md:flex-row justify-between items-center gap-6 py-10 c-main">
-			<p>
-				Copyright ©{{ date('Y') }}
-				{{ get_bloginfo('name') }}.
-				All Rights Reserved.
-			</p>
-			<p class="flex items-center gap-2">
-				Designed &amp; Developed by
-				<a
-					target="_blank"
-					rel="nofollow"
-					href="https://www.ohsofresh.pl"
-					title="OhSoFresh">
-					<img
-						class="oh"
-						src="{{ get_template_directory_uri() }}/resources/images/ohsofresh.svg"
-						alt="OhSoFresh">
-				</a>
-			</p>
-		</div>
+		<div class="flex flex-col md:flex-row md:justify-between justify-start items-start md:items-center gap-6 py-10 c-main">
+	<p>
+		Copyright ©{{ date('Y') }}
+		{{ get_bloginfo('name') }}.
+		All Rights Reserved.
+	</p>
+
+	<p class="flex items-center gap-2 justify-start">
+		Designed &amp; Developed by
+		<a
+			target="_blank"
+			rel="nofollow"
+			href="https://www.ohsofresh.pl"
+			title="OhSoFresh">
+			<img
+				class="oh"
+				src="{{ get_template_directory_uri() }}/resources/images/ohsofresh.svg"
+				alt="OhSoFresh">
+		</a>
+	</p>
+</div>
 	</div>
 </footer>

@@ -23,7 +23,7 @@
 		</div>
 
 		@if (!empty($r_benefits))
-<div class="__cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 mt-10">
+<div class="__cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 md:mt-10 mt-0">
 	@foreach ($r_benefits as $item)
 		<div data-gsap-element="card" class="__card relative p-8 text-center">
 

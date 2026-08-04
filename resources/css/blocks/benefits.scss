@@ -30,24 +30,57 @@
 			position: absolute;
 			top: 0;
 			right: 0;
-			bottom: -28px;
+			bottom: -38px;
 			border-right: 1px dashed rgba(6, 65, 102, 0.3);
 		}
 	}
 
 	@media (max-width: 767px) {
-		.__card::after {
-			display: none;
+		.__cards {
+			padding-top: 12px;
+			padding-bottom: 12px;
+
+			&::before {
+				display: none;
+			}
+		}
+
+		.__card {
+			padding: 20px 1.5rem 12px;
+			border-bottom: 1px dashed rgba(6, 65, 102, 0.3);
+
+			&:last-child {
+				border-bottom: none;
+			}
+
+			&::after {
+				display: none;
+			}
 		}
 	}
 
-	@media (min-width: 768px) and (max-width: 1023px) {
-		.__card::after {
-			display: none;
+	@media (min-width: 768px) and (max-width: 991px) {
+		.__cards {
+			padding-top: 16px;
+			padding-bottom: 16px;
+
+			&::before {
+				display: none;
+			}
 		}
 
-		.__card:nth-child(odd):not(:last-child)::after {
-			display: block;
+		.__card {
+			padding: 24px 2rem 16px;
+			border-bottom: 1px dashed rgba(6, 65, 102, 0.3);
+
+			&:last-child {
+				border-bottom: none;
+			}
+
+			&::after {
+				display: none;
+			}
 		}
 	}
+
 }

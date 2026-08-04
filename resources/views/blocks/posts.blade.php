@@ -10,7 +10,7 @@ $sectionClass .= $whitebg ? ' section-white' : '';
 $sectionClass .= $brandbg ? ' section-brand' : '';
 @endphp
 
-<div data-gsap-anim="section" @if(!empty($section_id)) id="{{ $section_id }}" @endif class="b-posts relative py-36 overflow-hidden {{ $sectionClass }} {{ $section_class }}">
+<div data-gsap-anim="section" @if(!empty($section_id)) id="{{ $section_id }}" @endif class="b-posts relative md:py-36 py-20 overflow-hidden {{ $sectionClass }} {{ $section_class }}">
 
     <div class="absolute inset-0 z-1 pointer-events-none" style="background: linear-gradient(270deg, #064166 -10.43%, #021622 86.18%)"></div>
 
@@ -30,7 +30,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
     class="group flex flex-col bg-white overflow-hidden transition duration-300 hover:-translate-y-1 hover:shadow-lg"
 >
 
-    {{-- zdjęcie --}}
+     
     @if(has_post_thumbnail($post->ID))
         <div class="aspect-[16/10] overflow-hidden">
             {!! get_the_post_thumbnail(
@@ -43,11 +43,9 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
         </div>
     @endif
 
-    {{-- treść --}}
     <div class="flex flex-col items-center text-center p-6 flex-1">
 
-        <!-- {{-- ikona linkedin --}}
-        @if(get_field('linkedin_url', $post->ID))
+        <!-- @if(get_field('linkedin_url', $post->ID))
       <img class="w-8 h-8 mb-5" src="/wp-content/uploads/2026/07/in.svg" />
 
         @endif -->

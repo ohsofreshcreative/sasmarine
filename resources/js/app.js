@@ -11,6 +11,8 @@ import.meta.glob(['../images/**', '../fonts/**']);
 // Twoje niestandardowe moduły JS
 import './menubar.js';
 import './footer-accordion.js';
+import './related-posts.js';
+import './category.js';
 
 /*--- USED ---*/
 

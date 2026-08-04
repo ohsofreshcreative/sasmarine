@@ -6,14 +6,14 @@ use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 use App\Support\SectionClasses;
 
-class Cta extends Block
+class Teaser extends Block
 {
-	public $name = 'Wezwanie do działania';
-	public $description = 'cta';
-	public $slug = 'cta';
+	public $name = 'Banner';
+	public $description = 'teaser - banner';
+	public $slug = 'teaser';
 	public $category = 'formatting';
-	public $icon = 'button';
-	public $keywords = ['cta'];
+	public $icon = 'align-full-width';
+	public $keywords = ['tresc', 'zdjecie', 'podstrona', 'hero'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
@@ -23,46 +23,39 @@ class Cta extends Block
 
 	public function fields()
 	{
-		$cta = new FieldsBuilder('cta');
+		$teaser = new FieldsBuilder('teaser');
 
-		$cta
-			->setLocation('block', '==', 'acf/cta') // ważne!
+		$teaser
+			->setLocation('block', '==', 'acf/teaser') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Wezwanie do działania',
+				'label' => 'Hero - Podstrona z gradienten',
 				'open' => false,
 				'multi_expand' => true,
 			])
-			/*--- FIELDS ---*/
+			/*--- TAB #1 ---*/
 			->addTab('Treść', ['placement' => 'top'])
-			->addMessage('Edycja', 'Tę zawartość edytujemy klikając w menu panelu administratora „Wezwanie do działania”.')
-			->addTrueFalse('form', [
-				'label' => 'Pokaż formularz',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
+			->addGroup('g_teaser', ['label' => 'teaser'])
+			->addImage('image', [
+				'label' => 'Obraz',
+				'return_format' => 'array',
+				'preview_size' => 'thumbnail',
 			])
-			->addTrueFalse('content', [
-				'label' => 'Inna treść',
-				'instructions' => 'Włącz, aby nadpisać treść z ustawień globalnych',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addText('header', [
-				'label' => 'Nagłówek',
-				'conditional_logic' => [[['field' => 'content', 'operator' => '==', 'value' => '1']]],
-			])
-			->addWysiwyg('txt', [
+			->addText('title', ['label' => 'Tytuł'])
+			->addWysiwyg('text', [
 				'label' => 'Treść',
-				'tabs' => 'visual',
-				'toolbar' => 'basic',
-				'media_upload' => false,
-				'conditional_logic' => [[['field' => 'content', 'operator' => '==', 'value' => '1']]],
+				'tabs' => 'all', // 'visual', 'text', 'all'
+				'toolbar' => 'full', // 'basic', 'full'
+				'media_upload' => true,
 			])
+			->addLink('button', [
+				'label' => 'Przycisk',
+				'return_format' => 'array',
+			])
+			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/
 
@@ -97,12 +90,6 @@ class Cta extends Block
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
-			->addTrueFalse('pt50', [
-				'label' => 'Dodatkowy padding górny 50px',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
 			->addTrueFalse('gap', [
 				'label' => 'Większy odstęp',
 				'ui' => 1,
@@ -125,25 +112,13 @@ class Cta extends Block
 				'allow_null' => 0,
 			]);
 
-		return $cta;
+		return $teaser;
 	}
 
 	public function with(): array
 	{
-		$g_octa = get_field('g_octa', 'option');
-
-		if ((bool) get_field('content')) {
-			if ($header = get_field('header')) {
-				$g_octa['header'] = $header;
-			}
-			if ($txt = get_field('txt')) {
-				$g_octa['txt'] = $txt;
-			}
-		}
-
 		$fields = [
-			'g_octa' => $g_octa,
-			'form' => (bool) get_field('form'),
+			'g_teaser' => get_field('g_teaser'),
 
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
@@ -151,9 +126,7 @@ class Cta extends Block
 			'flip' => (bool) get_field('flip'),
 			'wide' => (bool) get_field('wide'),
 			'nomt' => (bool) get_field('nomt'),
-			'pt50' => (bool) get_field('pt50'),
 			'gap' => (bool) get_field('gap'),
-			'nolist' => (bool) get_field('nolist'),
 
 			'background' => get_field('background') ?: 'none',
 		];
@@ -162,9 +135,7 @@ class Cta extends Block
 			'flip' => 'order-flip',
 			'wide' => 'wide',
 			'nomt' => '!mt-0',
-				'pt50' => 'pt-12',
 			'gap' => 'wider-gap',
-			'nolist' => 'no-list',
 		]);
 
 		return $fields;

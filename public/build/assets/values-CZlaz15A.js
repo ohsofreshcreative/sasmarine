@@ -1,0 +1,1 @@
+import{r as e,t}from"./app-DKM3S7uD.js";(()=>{let n=document.querySelectorAll(`.values-swiper`);n.length&&n.forEach(n=>{new e(n,{modules:[t],grabCursor:!0,slidesPerView:`auto`,spaceBetween:24,navigation:{prevEl:n.closest(`section`).querySelector(`.__prev`),nextEl:n.closest(`section`).querySelector(`.__next`)}})})})();

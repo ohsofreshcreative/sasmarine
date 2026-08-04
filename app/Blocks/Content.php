@@ -109,6 +109,26 @@ class Content extends Block
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
+			->addTrueFalse('overlay_image', [
+				'label' => 'Zdjęcie dekoracyjne na zdjęciu',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addImage('overlay_image_file', [
+				'label' => 'Zdjęcie dekoracyjne',
+				'return_format' => 'array',
+				'preview_size' => 'thumbnail',
+				'conditional_logic' => [
+					[
+						[
+							'field' => 'overlay_image',
+							'operator' => '==',
+							'value' => '1',
+						],
+					],
+				],
+			])
 			->addSelect('background', [
 				'label' => 'Kolor tła',
 				'choices' => [
@@ -141,7 +161,8 @@ class Content extends Block
 			'nomt' => (bool) get_field('nomt'),
 			'gap' => (bool) get_field('gap'),
 			'nolist' => (bool) get_field('nolist'),
-
+			'overlay_image' => (bool) get_field('overlay_image'),
+			'overlay_image_file' => get_field('overlay_image_file'),
 			'background' => get_field('background') ?: 'none',
 		];
 

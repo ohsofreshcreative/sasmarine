@@ -90,11 +90,11 @@ if (is_array($logo)) {
 		x-transition:leave="transition ease-in duration-150"
 		x-transition:leave-start="opacity-100 transform translate-x-0"
 		x-transition:leave-end="opacity-0 transform translate-x-full"
-		class="mobile-menu fixed top-0 right-0 bottom-0 w-full h-full bg-primary shadow-xl z-[51] overflow-y-auto md:hidden"
+		class="mobile-menu fixed top-0 right-0 bottom-0 w-full h-full bg-secondary-100 shadow-xl z-[51] overflow-y-auto md:hidden"
 		aria-label="Menu mobilne">
-		<div class="p-4 relative z-10">
+		<div class="p-4 relative z-10 !bg-primary">
 			<div class="flex items-center justify-between mb-6">
-				<span class=""><a class="brand shrink-0" href="{{ home_url('/') }}"><img src="{{ $logo_url }}" alt="{{ $logo_alt }}" class="w-auto h-12 invert grayscale"></a></span>
+				<span class=""><a class="brand shrink-0" href="{{ home_url('/') }}"><img src="{{ $logo_url }}" alt="{{ $logo_alt }}" class="w-auto z-[61] h-12 "></a></span>
 				<button
 					@click="mobileOpen = false"
 					class="p-2 text-white rounded-md">

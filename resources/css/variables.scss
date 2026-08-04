@@ -95,11 +95,11 @@ body {
 	--txt: "Inter", sans-serif;
 	--btns-font: "Inter", sans-serif;
 
-	--smt: 104px;
-	--spt: 104px;
-	--smb: 104px;
-	--spb: 104px;
-	--menu-height: 86px !important;
+	--smt: 90px;
+	--spt: 90px;
+	--smb: 90px;
+	--spb: 90px;
+	--menu-height: 88px !important;
 
 	--img-xs: 176px;
 	--img-s: 240px;
@@ -804,9 +804,11 @@ h6,
 
 .mobile-menu {
 	z-index: 99999;
+
 }
 
 #mobile-menu-panel {
+
 	li a {
 		color: #FFF;
 		font-size: 20px;
@@ -1457,6 +1459,7 @@ footer {
 	:root {
 		--smt: 56px;
 		--smb: 56px;
+		--spt: 56px;
 		--img-m: 240px;
 		--img-l: 240px;
 		--img-2xl: 320px;

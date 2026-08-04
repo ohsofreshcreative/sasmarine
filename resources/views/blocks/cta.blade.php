@@ -26,7 +26,7 @@
 				<p data-gsap-element="header" class="block text-h3 text-white m-header">{{ $g_octa['header'] }}</p>
 				@endif
 				@if (!empty($g_octa['txt']))
-				<div data-gsap-element="txt" class="text-white mb-6">{!! $g_octa['txt'] !!}</div>
+				<div data-gsap-element="txt" class="text-secondary-50 mb-6">{!! $g_octa['txt'] !!}</div>
 				@endif
 				@if (!empty($g_octa['phone']))
 				<p data-gsap-element="header" class="_phone text-white mb-4">{{ $g_octa['phone'] }}</p>
