@@ -55,7 +55,7 @@ add_filter('woocommerce_coming_soon_template', function ($template) {
 
 
 add_filter('gettext', function ($translated, $text, $domain) {
-    if (B
+    if (
         is_admin() &&
         $text === 'Open expanded editor'
     ) {
