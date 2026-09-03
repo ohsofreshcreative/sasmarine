@@ -33,12 +33,6 @@ class Overlap extends Block
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
-			->addAccordion('accordion1', [
-				'label' => 'Treść oraz duże kafelki',
-				'open' => false,
-				'multi_expand' => true,
-			])
-
 			/*--- TAB #1 ---*/
 			->addTab('Elementy', ['placement' => 'top'])
 			->addGroup('g_overlap', ['label' => ''])

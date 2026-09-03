@@ -31,11 +31,6 @@ class Slider extends Block
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
-			->addAccordion('accordion1', [
-				'label' => 'Slider - Realizacje ',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			->addTab('Treści', ['placement' => 'top'])
 			->addText('title', ['label' => 'Tytuł'])
 			->addText('header', ['label' => 'Nagolówek'])

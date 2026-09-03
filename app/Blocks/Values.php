@@ -31,11 +31,6 @@ class Values extends Block
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
-			->addAccordion('accordion1', [
-				'label' => 'Dlaczego warto',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			/*--- FIELDS ---*/
 			->addTab('Treści', ['placement' => 'top'])
 			->addGroup('g_values', ['label' => ''])

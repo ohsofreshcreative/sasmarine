@@ -31,11 +31,6 @@ class Study extends Block
                 'label' => 'Tytuł',
                 'required' => 0,
             ])
-            ->addAccordion('accordion1', [
-                'label' => 'Kafelki',
-                'open' => false,
-                'multi_expand' => true,
-            ])
            
             /*--- TAB #2 ---*/
             ->addTab('Treści - opis', ['placement' => 'top'])

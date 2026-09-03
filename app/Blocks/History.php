@@ -33,11 +33,6 @@ public $supports = [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
-			->addAccordion('accordion1', [
-				'label' => 'Historia',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			/*--- GROUP ---*/
 			->addTab('Elementy', ['placement' => 'top'])
 			->addGroup('g_history', ['label' => ''])

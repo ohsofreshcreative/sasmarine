@@ -33,11 +33,6 @@ class Logos extends Block
                 'label' => 'Tytuł',
                 'required' => 0,
             ])
-            ->addAccordion('accordion1', [
-                'label' => 'Logotypy partnerów',
-                'open' => false,
-                'multi_expand' => true,
-            ])
             ->addTab('Elementy', ['placement' => 'top'])
             ->addMessage('Informacja', 'Logotypy edytujemy klikając w menu panelu administratora „Logotypy partnerów".')
 

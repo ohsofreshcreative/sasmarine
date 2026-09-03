@@ -33,11 +33,6 @@ class Faq extends Block
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
-			->addAccordion('accordion1', [
-				'label' => 'Najczęściej zadawane pytania',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			/*--- TAB #1 ---*/
 			->addTab('Elementy', ['placement' => 'top'])
 			->addGroup('g_faq', ['label' => ''])

@@ -35,12 +35,6 @@ class Accordion extends Block
 				'required' => 0,
 			])
 
-			->addAccordion('accordion1', [
-				'label' => 'Rozwijane panele',
-				'open' => false,
-				'multi_expand' => true,
-			])
-
 			/*--- TAB #1 ---*/
 			->addTab('Treść', ['placement' => 'top'])
 			->addGroup('g_accordion', ['label' => ''])

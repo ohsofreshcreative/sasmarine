@@ -33,12 +33,6 @@ class Solutions extends Block
 				'required' => 0,
 			])
 
-			->addAccordion('accordion1', [
-				'label' => 'Slider - Realizacje',
-				'open' => false,
-				'multi_expand' => true,
-			])
-
 			->addTab('Treści', ['placement' => 'top'])
 
 			->addText('title', [

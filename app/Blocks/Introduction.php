@@ -31,11 +31,6 @@ class Introduction extends Block
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
-			->addAccordion('accordion1', [
-				'label' => 'Hero - Podstrona',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			/*--- TAB #1 ---*/
 			->addTab('Treść', ['placement' => 'introduction'])
 			->addGroup('g_introduction', ['label' => 'introduction'])

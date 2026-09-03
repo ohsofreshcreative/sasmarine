@@ -31,12 +31,6 @@ class Catalogues extends Block
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
-			->addAccordion('accordion1', [
-				'label' => 'Katalogi',
-				'open' => false,
-				'multi_expand' => true,
-			])
-
 			/*--- TAB #2 ---*/
 			->addTab('Grupy katalogów', ['placement' => 'top'])
 			->addRepeater('r_catalogues', [

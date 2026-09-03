@@ -31,11 +31,6 @@ class Showcase extends Block
                 'label' => 'Tytuł',
                 'required' => 0,
             ])
-            ->addAccordion('accordion1', [
-                'label' => 'Showcase',
-                'open' => false,
-                'multi_expand' => true,
-            ])
             ->addTab('Treść', ['placement' => 'top'])
             ->addGroup('g_showcase', ['label' => ''])
                 ->addText('title', ['label' => 'Tytuł'])

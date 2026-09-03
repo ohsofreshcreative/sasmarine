@@ -31,12 +31,6 @@ class Numbers extends Block
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
-			->addAccordion('accordion1', [
-				'label' => 'Liczby',
-				'open' => false,
-				'multi_expand' => true,
-			])
-
 			/*--- TAB #1 ---*/
 			->addTab('Kafelki', ['placement' => 'top'])
 			->addText('header', [

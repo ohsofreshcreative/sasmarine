@@ -30,11 +30,6 @@ class Posts extends Block
 				'label' => 'Tytuł bloku',
 				'required' => 0,
 			])
-			->addAccordion('accordion1', [
-				'label' => 'Baza wiedzy - Ostatnie wpisy',
-				'open' => true,
-				'multi_expand' => true,
-			])
 			/*--- FIELDS ---*/
 			->addTab('Treści', ['placement' => 'top'])
 			->addGroup('posts_settings', ['label' => ''])
