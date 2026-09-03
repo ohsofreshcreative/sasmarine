@@ -35,13 +35,21 @@
     ]
   },
   "resources/css/editor.css": {
-    "file": "assets/editor-hgoujow-.css",
+    "file": "assets/editor-CZq_ky0e.css",
     "name": "editor",
     "names": [
       "editor.css"
     ],
     "src": "resources/css/editor.css",
-    "isEntry": true
+    "isEntry": true,
+    "assets": [
+      "assets/btn-arrow-BCoyKg90.svg",
+      "assets/phone-CsaqUbl9.svg",
+      "assets/mail-BsdHUSBF.svg",
+      "assets/bottom-arrow-BE5KB43S.svg",
+      "assets/ellipse-Bs9JHnNB.svg",
+      "assets/pointer-DCg2HeqG.svg"
+    ]
   },
   "resources/images/bottom-arrow.svg": {
     "file": "assets/bottom-arrow-BE5KB43S.svg",

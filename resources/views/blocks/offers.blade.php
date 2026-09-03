@@ -25,7 +25,7 @@
 				<a href="{{ $item['url'] }}" class="absolute inset-0 z-10" aria-label="Zobacz ofertę {{ $item['title'] }}"></a>
 
 				<div class="grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-16">
-					<figure data-gsap-element="img" class="__img h-full relative {{ $loop->even ? 'md:order-2' : '' }}">
+					<figure class="__img h-full relative {{ $loop->even ? 'md:order-2' : '' }}">
 						<picture>
 							<img class="md:h-[400px]  h-[240px]  w-full object-cover rounded-md" src="{{ $item['image_url'] ?? '' }}" alt="{{ $item['image_alt'] ?? '' }}">
 						</picture>
@@ -34,13 +34,13 @@
 
 					<div class="__content {{ $loop->even ? 'md:order-1' : '' }}">
 						@if (!empty($item['icon_url']))
-						<img data-gsap-element="icon" class="mb-4 w-8 h-8 object-contain" src="{{ $item['icon_url'] }}" alt="{{ $item['icon_alt'] }}">
+						<img class="mb-4 w-8 h-8 object-contain" src="{{ $item['icon_url'] }}" alt="{{ $item['icon_alt'] }}">
 						@endif
 
-						<h2 data-gsap-element="header" class="text-h5 m-header ">{{ $item['title'] }}</h2>
+						<h2 class="text-h5 m-header ">{{ $item['title'] }}</h2>
 
 						@if (!empty($item['excerpt']))
-						<div data-gsap-element="txt" class="__txt text-black text-lg">
+						<div class="__txt text-black text-lg">
 							<p>{!! $item['excerpt'] !!}</p>
 						</div>
 						@endif

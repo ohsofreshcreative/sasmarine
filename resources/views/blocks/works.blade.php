@@ -29,7 +29,7 @@
 
 				<div class="grid grid-cols-1 md:grid-cols-[5fr_3fr] items-center gap-8 md:gap-12">
 					<div class="__content p-6 pr-0 md:pr-2">
-						<h2 data-gsap-element="header" class="text-h5 m-header">{{ $item['title'] }}</h2>
+						<h2 class="text-h5 m-header">{{ $item['title'] }}</h2>
 
 						<div class="flex flex-wrap gap-2 text-sm text-primary-500 mt-4">
 							@if (!empty($item['ship_name']))
@@ -50,7 +50,7 @@
 						</div>
 
 						@if (!empty($item['excerpt']))
-						<div data-gsap-element="txt" class="__txt text-black text-lg mt-6 leading-relaxed">
+						<div class="__txt text-black text-lg mt-6 leading-relaxed">
 							<p>{!! $item['excerpt'] !!}</p>
 						</div>
 						@endif
@@ -60,7 +60,7 @@
 						</span>
 					</div>
 
-					<figure data-gsap-element="img" class="__img h-full relative">
+					<figure class="__img h-full relative">
 						<picture>
 							<img class="md:h-120 h-72 w-full object-cover " src="{{ $item['image_url'] ?? '' }}" alt="{{ $item['image_alt'] ?? '' }}">
 						</picture>

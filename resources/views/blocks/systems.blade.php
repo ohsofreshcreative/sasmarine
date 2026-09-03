@@ -26,7 +26,7 @@
         <div data-gsap-element="item" class="__col bg-white border border-dashed border-primary p-6">
             <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-16">
                 @if (!empty($item['image']['url']))
-               <figure data-gsap-element="img" class="__img h-full relative {{ $loop->odd ? 'md:order-2' : '' }}">
+               <figure class="__img h-full relative {{ $loop->odd ? 'md:order-2' : '' }}">
                     <picture>
                         <img class="md:h-[400px] h-[240px] w-full object-cover rounded-md"
                              src="{{ $item['image']['url'] }}"
@@ -40,11 +40,11 @@
 
                 <div class="__content {{ $loop->odd ? 'md:order-1' : '' }}">
                     @if (!empty($item['title']))
-                    <h2 data-gsap-element="header" class="text-h5 m-header">{{ $item['title'] }}</h2>
+                    <h2 class="text-h5 m-header">{{ $item['title'] }}</h2>
                     @endif
 
                     @if (!empty($item['text']))
-                    <div data-gsap-element="txt" class="__txt text-black text-lg">
+                    <div class="__txt text-black text-lg">
                         <p>{{ $item['text'] }}</p>
                     </div>
                     @endif
@@ -52,8 +52,7 @@
 					<x-button
 						:href="$item['button']['url']"
 						variant=""
-						class="mt-6 !text-primary"
-						data-gsap-element="">
+						class="mt-6 !text-primary">
 						{{ $item['button']['title'] }}
 						          <x-icon.arrow-right class="w-3 text-secondary inline"/>
 					</x-button>

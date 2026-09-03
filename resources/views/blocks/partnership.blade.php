@@ -38,7 +38,7 @@
 			{!! $g_partnership['text'] !!}
 		</div>
 		@endif
-		<div class="swiper partnership-standard !overflow-visible">
+		<div data-gsap-element="swiper" class="swiper partnership-standard !overflow-visible">
 			<div class="swiper-wrapper">
 				@foreach($partnership as $slide)
 				<div class="swiper-slide h-full">
